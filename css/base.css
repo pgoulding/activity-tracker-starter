@@ -68,10 +68,10 @@ nav.dashTitle {
   width: 100%;
 }
 
-.flex-wrapper {
+/* .flex-wrapper {
   display: flex;
   flex-flow: row nowrap;
-}
+} */
 
 .single-chart {
   width: 100%;

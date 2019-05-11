@@ -1,11 +1,17 @@
 if (typeof module !== 'undefined') {
   userData = require('../data/users-test-data')
   UserRepo = require('./UserRepo')
+  hydrationData = require('../data/hydration-test-data')
+  Hydration = require('./User')
+  hydration = new Hydration()
+
 }
 
 class User {
   constructor(userID) {
     this.user = (this.returnUserData(userID));
+    // this.hydration = (new Hydration(userID));
+
   }
 
   returnUserData(index) {

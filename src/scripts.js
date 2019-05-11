@@ -233,21 +233,23 @@ let stepGoalComparisonChart = new Chart(stepGoals, {
 let sleepChart = new Chart(sleepToday, {
   type: 'bar',
   data: {
-    labels: [`Hours Slept Today`, `Sleep Quality Today`, `Average Hours Slept`, `Average Sleep Quality`],
+    labels: [`Hours Slept Today`, `Sleep Quality Today`, `` ,`Average Hours Slept`, `Average Sleep Quality`],
     datasets: [{
       label: 'Sleep',
-      data: [(daySleep), (qualitySleep), (alltimeHoursSleep), (alltimeQualSleep) ],
+      data: [(daySleep), (qualitySleep), null,(alltimeHoursSleep), (alltimeQualSleep) ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)'
+        null,
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)'
       ],
       borderColor: [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
+        null,
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)'
       ],
       borderWidth: 1
     }]
