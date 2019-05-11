@@ -11,8 +11,8 @@ const hydration = new Hydration()
 const sleep = new Sleep()
 const activity = new Activity()
 
-console.log('user: ', user)
 console.log('userRepo: ', userRepo)
+console.log('user: ', user)
 console.log('hydration: ', hydration)
 console.log('sleep: ', sleep)
 console.log('activity: ', activity)
@@ -52,12 +52,12 @@ $('#user-miles').text(`${activity.milesWalkedToday(todaysDate)}`)
 
 
 /*------------Charts----------------*/
-const sleepQual = document.getElementById('qual-slept-week-chart').getContext('2d');
-const sleepHours = document.getElementById('hours-slept-week-chart').getContext('2d');
-const hydrationWeek = document.getElementById('hydration-week-chart').getContext('2d');
-const activityWeek = document.getElementById('activity-week-chart').getContext('2d')
-const stepGoals = document.getElementById('step-goal-chart').getContext('2d')
-const sleepToday = document.getElementById('sleep-chart').getContext('2d')
+const sleepQual = $('#qual-slept-week-chart');
+const sleepHours = $('#hours-slept-week-chart');
+const hydrationWeek = $('#hydration-week-chart');
+const activityWeek = $('#activity-week-chart');
+const stepGoals = $('#step-goal-chart');
+const sleepToday = $('#sleep-chart');
 
 let hoursSleptChart = new Chart(sleepHours, {
   type: 'bar',
