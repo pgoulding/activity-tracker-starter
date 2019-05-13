@@ -110,8 +110,23 @@ class Sleep {
     // }, 0))
   }
   //For a given day(identified by the date), find the users who slept the most number of hours(one or more if they tied)
-  championOfSleepers(date) {
-
+  championOfSleepers(day) {
+    let hoursDay = sleepData.map(users => {
+      return {userID: users.userID, date: users.sleepData.find(dates => dates.date === day)}
+    })
+    let newHoursDay = hoursDay.map(singleDay => {
+      return {userID: singleDay.userID, hours: singleDay.date.hoursSlept}
+    })
+    let user = newHoursDay.sort((a,b) => b.hours - a.hours)
+    let userArr = [];
+    let test = user.forEach(users => {
+      if(user[0].hours === users.hours){
+        userArr.push(users)
+      } else {
+        return userArr
+      }
+    })
+    return userArr
   }
 // Make your own metric
 // For a user, their longest night of sleep.
