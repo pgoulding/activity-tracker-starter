@@ -8303,7 +8303,7 @@
       animationDuration: 400
     },
     onClick: null,
-    maintainAspectRatio: true,
+    maintainAspectRatio: false,
     responsive: true,
     responsiveAnimationDuration: 0
   });
