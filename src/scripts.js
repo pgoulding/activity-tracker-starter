@@ -2,7 +2,7 @@
 const dynamicUser = Math.floor(Math.random() * (50 - 1 + 1)) + 1;
 const todaysDate = moment().format("DD" + "/" + "MM" + "/" + "YYYY")
 
-document.getElementById("datetime").innerHTML = todaysDate;
+$('#datetime').html(todaysDate);
 
 /*----------------new instantiations---------*/
 const userRepo = new UserRepo();
@@ -11,8 +11,8 @@ const hydration = new Hydration()
 const sleep = new Sleep()
 const activity = new Activity()
 
-console.log('user: ', user)
 console.log('userRepo: ', userRepo)
+console.log('user: ', user)
 console.log('hydration: ', hydration)
 console.log('sleep: ', sleep)
 console.log('activity: ', activity)
@@ -35,28 +35,29 @@ let alltimeHoursSleep = sleep.averageSleepHoursAllTime()
 let alltimeQualSleep = sleep.averageSleepQualAllTime()
 
 /*----------------User info---------------*/
-document.getElementById('userName').innerText = `Welcome ${user.returnUserFirstName()}!`;
-document.getElementById('userAddress').innerText = user.user.address;
-document.getElementById('userEmail').innerText = user.user.email;
-document.getElementById('userStepGoal').innerText = `Daily Step Goal: ${user.user.dailyStepGoal}`;
-document.getElementById('userStrideLength').innerText = `Stride Length ${user.user.strideLength}`;
-document.getElementById('user-profile-pic').innerHTML = `<img id="prof-pic" src="../images/${user.user.id}.jpg">`
-document.getElementById('user-longest-sleep-date').innerText = `${longestNight.date}`
-document.getElementById('user-longest-sleep-hours').innerText = `${longestNight.hoursSlept}`
+$('#user-name').text(`Welcome ${user.returnUserFirstName()}!`)
+$('#full-name').text(user.user.name);
+$('#user-address').text(user.user.address);
+$('#user-email').text(user.user.email);
+$('#user-step-goal').text(`Daily Step Goal: ${user.user.dailyStepGoal}`);
+$('#user-stride-length').text(`Stride Length ${user.user.strideLength}`);
+$('#user-profile-pic').html(`<img id="prof-pic" src="../images/${user.user.id}.jpg">`);
+$('#user-longest-sleep-date').text(`${longestNight.date}`);
+$('#user-longest-sleep-hours').text(`${longestNight.hoursSlept}`);
 /*-------------activity info---------*/
 
-document.getElementById('user-steps').innerText = `You have taken ${todaysSteps} steps today, that means you've walked ${activity.milesWalkedToday(todaysDate)}, miles!!!`
-document.getElementById('user-active').innerText = `You have been active for ${activity.minutesActiveForDate(todaysDate)} minutes today`
-document.getElementById('user-miles').innerText = `${activity.milesWalkedToday(todaysDate)}`
+$('#user-steps').text(`You have taken ${todaysSteps} steps today, that means you've walked ${activity.milesWalkedToday(todaysDate)}, miles!!!`)
+$('#user-active').text(`You have been active for ${activity.minutesActiveForDate(todaysDate)} minutes today`)
+$('#user-miles').text(`${activity.milesWalkedToday(todaysDate)}`)
 
 
 /*------------Charts----------------*/
-const sleepQual = document.getElementById('qual-slept-week-chart').getContext('2d');
-const sleepHours = document.getElementById('hours-slept-week-chart').getContext('2d');
-const hydrationWeek = document.getElementById('hydration-week-chart').getContext('2d');
-const activityWeek = document.getElementById('activity-week-chart').getContext('2d')
-const stepGoals = document.getElementById('step-goal-chart').getContext('2d')
-const sleepToday = document.getElementById('sleep-chart').getContext('2d')
+const sleepQual = $('#qual-slept-week-chart');
+const sleepHours = $('#hours-slept-week-chart');
+const hydrationWeek = $('#hydration-week-chart');
+const activityWeek = $('#activity-week-chart');
+const stepGoals = $('#step-goal-chart');
+const sleepToday = $('#sleep-chart');
 
 let hoursSleptChart = new Chart(sleepHours, {
   type: 'bar',
@@ -270,9 +271,9 @@ let sleepChart = new Chart(sleepToday, {
 
 
 /*------------Circle Graphs--------*/
-const waterPercentage = () => dayHydration / 64 * 100;
+const waterPercentage = () => parseFloat(dayHydration / 64 * 100).toFixed(2)
 
-const walkingPercentage = () => todaysSteps / user.user.dailyStepGoal * 100
+const walkingPercentage = () => parseFloat((todaysSteps / user.user.dailyStepGoal * 100).toFixed(2))
 
 const minutesPerDay = () => (todaysMinutesActive / 150) * 100
 
@@ -287,7 +288,7 @@ const determineColor = percentage => {
   }
 }
 
-document.getElementById('user-water').innerHTML = `<div class="single-chart">
+$('#user-water').html(`<div class="single-chart">
     <svg viewBox="0 0 36 36" class="circular-chart ${determineColor(waterPercentage())}">
       <path class="circle-bg"
         d="M18 2.0845
@@ -300,11 +301,12 @@ document.getElementById('user-water').innerHTML = `<div class="single-chart">
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text x="18" y="20.35" class="percentage">${dayHydration} Oz</text>
+      <text x="18" y="20.35" class="percentage">${waterPercentage()}%</text>
     </svg>
-  </div>`
+    <p>You have drank ${dayHydration}oz's out of your goal of 64oz</p>
+  </div>`);
 
-document.getElementById('user-steps').innerHTML = `<div class="single-chart">
+$('#user-steps').html(`<div class="single-chart">
     <svg viewBox="0 0 36 36" class="circular-chart ${determineColor(walkingPercentage())}">
       <path class="circle-bg"
         d="M18 2.0845
@@ -317,11 +319,12 @@ document.getElementById('user-steps').innerHTML = `<div class="single-chart">
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text x="18" y="20.35" class="percentage">${todaysSteps}</text>
+      <text x="18" y="20.35" class="percentage">${walkingPercentage()}%</text>
     </svg>
-  </div>`
+    <p>Steps today ${todaysSteps} our of your goal of ${user.user.dailyStepGoal}</p>
+  </div>`);
 
-  document.getElementById('user-active').innerHTML = `<div class="single-chart">
+$('#user-active').html(`<div class="single-chart">
     <svg viewBox="0 0 36 36" class="circular-chart ${determineColor(minutesPerDay())}">
       <path class="circle-bg"
         d="M18 2.0845
@@ -336,5 +339,5 @@ document.getElementById('user-steps').innerHTML = `<div class="single-chart">
       />
       <text x="18" y="20.35" class="percentage">${todaysMinutesActive}</text>
     </svg>
-  </div>`
+  </div>`);
 
