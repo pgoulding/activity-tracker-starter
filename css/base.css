@@ -56,7 +56,7 @@ h3 {
 }
 
 h4, p {
-  margin: 10px 2px 10px 2px;
+  margin: 25px 2px 10px 2px;
   text-align: center;
 }
 
@@ -93,9 +93,9 @@ fa {
 
 .circular-chart {
   display: block;
-  margin: 10px auto;
-  max-width: 70%;
-  max-height: 250px;
+  margin: auto;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .circle-bg {
@@ -139,20 +139,20 @@ fa {
 img.shoe {
   height: 180px;
   width: 180px;
-  padding: 0px 10px;
-  margin: 0px 20px 0px 20px;
+  padding: 0px 70px;
+  /* margin: 0px 20px 0px 20px; */
 }
 
 img.moon {
   height: 140px;
   width: 180px;
-  padding: 0px 10px;
-  margin: 5px 20px 0px 20px;
+  padding: 0px 70px;
+  /* margin: 5px 20px 0px 20px; */
 }
 
 #user-miles {
   font-size: 2.5em;
-  margin: 0px;
+  margin: 10px;
   padding: 0px;
   color: #666;
   font-family: sans-serif;
@@ -160,22 +160,34 @@ img.moon {
 
 #user-longest-sleep-hours, #user-longest-sleep-date {
   font-size: 2.0em;
-  margin: 5px 0px 5px 0px;
+  margin: 16px 0px 5px 0px;
   padding: 0px;
   color: #666;
   font-family: sans-serif;
 }
 
 article.widget {
+  position: relative;
   background-color: white;
-  height: 260px;
-  margin: 10px;
+  height: 280px;
+  margin: 5px;
   padding: 10px;
-  width: 240px;
+  width: 30%;
+  border-radius: 5px;
+}
+
+article.widget-data {
+  position: relative;
+  background-color: white;
+  height: 280px;
+  margin: 5px;
+  padding: 10px;
+  width: 60%;
   border-radius: 5px;
 }
 
 canvas {
   margin: auto;
 }
+
 

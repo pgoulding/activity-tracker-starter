@@ -42,8 +42,8 @@ $('#user-email').text(user.user.email);
 $('#user-step-goal').text(`Daily Step Goal: ${user.user.dailyStepGoal}`);
 $('#user-stride-length').text(`Stride Length ${user.user.strideLength}`);
 $('#user-profile-pic').html(`<img id="prof-pic" src="../images/${user.user.id}.jpg">`);
-$('#user-longest-sleep-date').text(`${longestNight.date}`);
-$('#user-longest-sleep-hours').text(`${longestNight.hoursSlept}`);
+$('#user-longest-sleep-date').text(`Date: ${longestNight.date}`);
+$('#user-longest-sleep-hours').text(`Hours: ${longestNight.hoursSlept}`);
 /*-------------activity info---------*/
 
 $('#user-steps').text(`You have taken ${todaysSteps} steps today, that means you've walked ${activity.milesWalkedToday(todaysDate)}, miles!!!`)
@@ -64,7 +64,7 @@ let hoursSleptChart = new Chart(sleepHours, {
   data: {
     labels: [`${(weekSleep[0].date)}`, `${(weekSleep[1].date)}`, `${(weekSleep[2].date)}`, `${(weekSleep[3].date)}`, `${(weekSleep[4].date)}`, `${(weekSleep[5].date)}`, `${(weekSleep[6].date)}`],
     datasets: [{
-      label: '#hours slept',
+      label: 'Hours Slept',
       data: [(weekSleep[0].hoursSlept), (weekSleep[1].hoursSlept), (weekSleep[2].hoursSlept), (weekSleep[3].hoursSlept), (weekSleep[4].hoursSlept), (weekSleep[5].hoursSlept), (weekSleep[6].hoursSlept)],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -101,7 +101,7 @@ let sleepQualityChart = new Chart(sleepQual, {
   data: {
     labels: [`${(weekQualSleep[0].date)}`, `${(weekQualSleep[1].date)}`, `${(weekQualSleep[2].date)}`, `${(weekQualSleep[3].date)}`, `${(weekQualSleep[4].date)}`, `${(weekQualSleep[5].date)}`, `${(weekQualSleep[6].date)}`],
     datasets: [{
-      label: '#Sleep Quality',
+      label: 'Sleep Quality',
       data: [(weekQualSleep[0].quality), (weekQualSleep[1].quality), (weekQualSleep[2].quality), (weekQualSleep[3].quality), (weekQualSleep[4].quality), (weekQualSleep[5].quality), (weekQualSleep[6].quality)],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -138,7 +138,7 @@ let hydrationWeekChart = new Chart(hydrationWeek, {
   data: {
     labels: [`${(weekHydration[0].date)}`, `${(weekHydration[1].date)}`, `${(weekHydration[2].date)}`, `${(weekHydration[3].date)}`, `${(weekHydration[4].date)}`, `${(weekHydration[5].date)}`, `${(weekHydration[6].date)}`],
     datasets: [{
-      label: '#Ounces',
+      label: 'Ounces',
       data: [(weekHydration[0].numOunces), (weekHydration[1].numOunces), (weekHydration[2].numOunces), (weekHydration[3].numOunces), (weekHydration[4].numOunces), (weekHydration[5].numOunces), (weekHydration[6].numOunces)],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -175,7 +175,7 @@ let activityWeekChart = new Chart(activityWeek, {
   data: {
     labels: [`${(weekHydration[0].date)}`, `${(weekHydration[1].date)}`, `${(weekHydration[2].date)}`, `${(weekHydration[3].date)}`, `${(weekHydration[4].date)}`, `${(weekHydration[5].date)}`, `${(weekHydration[6].date)}`],
     datasets: [{
-      label: '#Ounces',
+      label: 'Ounces',
       data: [(weekHydration[0].numOunces), (weekHydration[1].numOunces), (weekHydration[2].numOunces), (weekHydration[3].numOunces), (weekHydration[4].numOunces), (weekHydration[5].numOunces), (weekHydration[6].numOunces)],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -212,7 +212,7 @@ let stepGoalComparisonChart = new Chart(stepGoals, {
   data: {
     labels: [`Your Step Goal`, `Average Step Goal`],
     datasets: [{
-      label: '#Goal',
+      label: 'Goal',
       data: [(user.user.dailyStepGoal), (usersStepAverage)],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
@@ -303,7 +303,7 @@ $('#user-water').html(`<div class="single-chart">
       />
       <text x="18" y="20.35" class="percentage">${waterPercentage()}%</text>
     </svg>
-    <p>You have drank ${dayHydration}oz's out of your goal of 64oz</p>
+    <p>You drank ${dayHydration} oz's today, your goal was 64 oz's.</p>
   </div>`);
 
 $('#user-steps').html(`<div class="single-chart">
@@ -319,9 +319,9 @@ $('#user-steps').html(`<div class="single-chart">
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text x="18" y="20.35" class="percentage">${walkingPercentage()}%</text>
+      <text x="18" y="20.35" class="percentage">${todaysSteps}</text>
     </svg>
-    <p>Steps today ${todaysSteps} our of your goal of ${user.user.dailyStepGoal}</p>
+    <p>You took ${todaysSteps} steps today, your goal was ${user.user.dailyStepGoal}</p>
   </div>`);
 
 $('#user-active').html(`<div class="single-chart">
