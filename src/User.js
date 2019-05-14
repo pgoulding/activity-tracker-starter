@@ -25,22 +25,25 @@ class User {
   }
 
   friendOneStepCountForWeek(weekStart) {
-    
     let friendOneData = activityData.find(friendData => friendData.userID === this.userFriends[0].id)
     let index = friendOneData.activityData.findIndex(ele => ele.date === weekStart)
     let friendOneWeek = friendOneData.activityData.slice(index, index + 7)
 
     return friendOneWeek
-    // return friendOneData
-    // let allSteps = activityData.reduce((acc, sum) => {
-    //   sum.activityData.forEach(step => {
-    //     if (acc.indexOf(step) === -1) {
-    //       acc.push(step)
-    //     }
-    //   })
-    //   return acc
-    // }, [])
   } 
+
+  friendOneStepAverageForWeek(weekStart){
+    let friendOneData = activityData.find(friendData => friendData.userID === this.userFriends[0].id)
+    let index = friendOneData.activityData.findIndex(ele => ele.date === weekStart)
+    let friendOneWeek = friendOneData.activityData.slice(index, index + 7)
+    let friendOneSteps = friendOneWeek.map(steps => steps.numSteps)
+    let friendOneAvg =  friendOneSteps.reduce((acc, sum) => {
+      acc += sum
+      return acc;
+    },0);
+
+    return Math.round(friendOneAvg / friendOneSteps.length)
+  }
 
   friendTwoStepCountForWeek (weekStart) {
     let friendTwoData = activityData.find(friendData => friendData.userID === this.userFriends[1].id)
@@ -49,6 +52,19 @@ class User {
     
     return friendTwoWeek
   }
+
+  friendTwoStepAverageForWeek(weekStart) {
+    let friendTwoData = activityData.find(friendData => friendData.userID === this.userFriends[1].id)
+    let index = friendTwoData.activityData.findIndex(ele => ele.date === weekStart)
+    let friendTwoWeek = friendTwoData.activityData.slice(index, index + 7)
+    let friendTwoSteps = friendTwoWeek.map(steps => steps.numSteps)
+    let friendTwoAvg =  friendTwoSteps.reduce((acc, sum) => {
+      acc += sum
+      return acc;
+    },0);
+  
+    return Math.round(friendTwoAvg / friendTwoSteps.length)
+    }
 }
 
 if (typeof module !== 'undefined') {
