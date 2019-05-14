@@ -391,4 +391,3 @@ $('#user-active').html(`<div class="single-chart">
       <text x="18" y="20.35" class="percentage">${todaysMinutesActive}</text>
     </svg>
   </div>`);
-
