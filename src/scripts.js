@@ -53,7 +53,7 @@ $('#user-longest-sleep-hours').text(`Hours: ${longestNight.hoursSlept}`);
 
 $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes today`)
 $('#user-miles').text(`${userMilesWalkedToday}`)
-$('#all-user-active').text(`Average for all users today is ${averageMinsTodayAll}`)
+$('#all-user-active').text(`Average for all users today was ${averageMinsTodayAll} minutes.`)
 
 
 /*------------Charts----------------*/
@@ -87,7 +87,7 @@ let hoursSleptChart = new Chart(sleepHours, {
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -124,7 +124,7 @@ let sleepQualityChart = new Chart(sleepQual, {
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -161,7 +161,7 @@ let hydrationWeekChart = new Chart(hydrationWeek, {
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -227,7 +227,7 @@ let stepGoalComparisonChart = new Chart(stepGoals, {
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -262,7 +262,7 @@ let sleepChart = new Chart(sleepToday, {
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -353,7 +353,8 @@ $('#user-water').html(`<div class="single-chart">
       />
       <text x="18" y="20.35" class="percentage">${waterPercentage()}%</text>
     </svg>
-    <p>You drank ${dayHydration} oz's today, your goal was 64 oz's.</p>
+    <p>You drank ${dayHydration} oz's today.</p>
+    <p>Your goal was 64 oz's.</p>
   </div>`);
 
 $('#user-steps').html(`<div class="single-chart">
@@ -371,8 +372,8 @@ $('#user-steps').html(`<div class="single-chart">
       />
       <text x="18" y="20.35" class="percentage">${todaysSteps}</text>
     </svg>
-    <p>You took ${todaysSteps} steps today, your goal was ${user.user.dailyStepGoal}</p>
-    <p>Average for all users today is ${averageStepsTodayAll}</p>
+    <p>Your goal was ${user.user.dailyStepGoal} steps.</p>
+    <p>Average for all users today was ${averageStepsTodayAll} steps.</p>
   </div>`);
 
 $('#user-active').html(`<div class="single-chart">
