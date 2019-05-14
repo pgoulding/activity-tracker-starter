@@ -72,6 +72,8 @@ describe('Activity Test', function () {
     expect(activity.userAllTimeStepRecord()).to.equal(14811)
   })
 
-  
+  it('should find the all three day streaks for a user', function () {
+    console.log(activity.userStepStreak())
+  })
 
 })

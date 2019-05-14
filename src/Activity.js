@@ -128,12 +128,33 @@ class Activity {
 //Make a metric of your own! Document it, calculate it, and display it.
 // Best step day all time
 
-userAllTimeStepRecord() {
-  return this.activeData.activityData
-    .sort((a, b)=> b.numSteps - a.numSteps)
-    .map(step => step.numSteps).shift()
-}
+  userAllTimeStepRecord() {
+    return this.activeData.activityData
+      .sort((a, b)=> b.numSteps - a.numSteps)
+      .map(step => step.numSteps).shift()
+  }
 
+  userStepStreak () {
+    let currentSeries = []
+    let streakResults = []
+    this.activeData.activityData.forEach((currentItem, index) => {
+      if (currentItem === this.activeData.activityData[this.activeData.activityData.length - 1]) {
+        return;
+      }
+      let firstNum = currentItem.numSteps;
+      let secondNum = this.activeData.activityData[index + 1].numSteps;
+      currentSeries.push(currentItem)
+      // console.log(currentSeries)
+      if (firstNum > secondNum) {
+        // console.log(firstNum)
+        if(currentSeries >= 3) {
+          streakResults.push(currentSeries);
+        }
+        currentSeries = [];
+      } 
+    })
+    return streakResults;
+  }
 }
 
 if (typeof module !== 'undefined') {
