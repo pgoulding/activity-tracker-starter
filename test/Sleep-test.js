@@ -56,10 +56,17 @@ describe('Sleep Test', function () {
     expect(sleep.allUsersSleepQuality()).to.equal(2.57)
   })
 
-  it('should', function () {
-    sleep.allUsersGoodSleepGivenWeek()
-    
-    // expect(sleep.allUsersGoodSleepGivenWeek())
+  it('should find all users who average a sleep quality greater than 3 for a week', function () {
+
+  })
+
+  it('should find the users who slept the most hours for a given day (one or more if they tied)', function () {
+    sleep.championOfSleepers('06/05/2019')
+    expect(sleep.championOfSleepers('06/05/2019')).to.be.a('array')
+  })
+
+  it('should display the night they slept the longest', function () {
+    expect(sleep.longestNightSleep()).to.be.a('object');
   })
 
 

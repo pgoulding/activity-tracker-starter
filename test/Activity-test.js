@@ -25,33 +25,33 @@ describe('Activity Test', function () {
   })
 
   it('should calculate how many miles walked today in miles, based on their stride length', function () {
-    expect(activity.milesWalkedToday('06/05/2019')).to.be.a('number')
-    expect(activity.milesWalkedToday('06/05/2019')).to.be.equal(6.56)
+    expect(activity.userMilesWalkedToday('06/05/2019')).to.be.a('number')
+    expect(activity.userMilesWalkedToday('06/05/2019')).to.be.equal(6.56)
   })
 
   it('should return how many minutes the user was active for a given day(specified by a date)', function () {
-    expect(activity.activeMinutesPerDay('06/05/2019')).to.be.a('number')
-    expect(activity.activeMinutesPerDay('06/05/2019')).to.equal(204)
+    expect(activity.userActiveMinutesPerDay('06/05/2019')).to.be.a('number')
+    expect(activity.userActiveMinutesPerDay('06/05/2019')).to.equal(204)
   })
 
   it('should return how many minutes active did a user average for a given week', function () {
-    expect(activity.activeMinutesPerWeek('06/05/2019')).to.equal(176.43)
+    expect(activity.userActiveMinutesPerWeek('06/05/2019')).to.equal(176.43)
   })
 
   it('should return true or false for if they reached their step goal for a given day(specified by a date)', function () {
     expect(user.user.dailyStepGoal).to.equal(8000)
     expect(activity.activeData.activityData[22].numSteps).to.equal(11328)
     expect(user.user.dailyStepGoal).to.be.lessThan(activity.activeData.activityData[22].numSteps)
-    expect(activity.stepGoalReached('28/05/2019')).to.equal(true)
+    expect(activity.userStepGoalReached('28/05/2019')).to.equal(true)
   })
 
   it('should find all the days where the user exceede their step goal', function () {
-    expect(activity.daysExceededStepGoal()).to.be.a('array')
-    expect(activity.daysExceededStepGoal()).to.not.include('06/05/2019')
+    expect(activity.userDaysExceededStepGoal()).to.be.a('array')
+    expect(activity.userDaysExceededStepGoal()).to.not.include('06/05/2019')
   })
 
   it('should find their all time user record of flights of stairs', function () {
-    expect(activity.allTimeStairRecord()).to.equal(50)
+    expect(activity.userAllTimeStairRecord()).to.equal(50)
   })
 
   it('should return the average number of stairs climbed for a specified date for all users', function () {
@@ -60,11 +60,11 @@ describe('Activity Test', function () {
   })
 
   it('should return the average number of steps taken for a specific date', function () {
-    expect(activity.stepsTakenOnDate('06/05/2019')).to.be.equal(6872)
+    expect(activity.allUsersStepsTakenOnDate('06/05/2019')).to.be.equal(6872)
   })
 
   it('should return the average number of minutes active for a specific date', function () {
-    expect(activity.minutesActiveForDate('06/05/2019')).to.equal(128)
+    expect(activity.allUsersMinutesActiveForDate('06/05/2019')).to.equal(128)
   })
 
   

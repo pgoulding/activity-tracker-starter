@@ -5,25 +5,31 @@
     <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../libraries/package/dist/Chart.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body>
     <header>
-      <h1 id='userName'></h1>
+      <h1 id='user-name'></h1>
+      <span id="user-profile-pic"></span>
+      <figure><img class='calendar'src='../images/calendar.svg'/><span id="datetime"></span></figure>
     </header>
     <main>
-      <figure><img class='calendar'src='../images/calendar.svg'/> Today <span id="datetime"></span></figure>
       <section class="widgetContainer">
         <article class="widget">
           <h3>Personal Info</h3>
           <span id="user-profile-pic"></span>
-          <p id='userAddress'></p>
-          <p id='userEmail'></p>
-          <p id='userStepGoal'></p>
-          <p id='userStrideLength'></p>
+          <p id="full-name"></p>
+          <p id='user-address'></p>
+          <p id='user-email'></p>
+          <p id='user-step-goal'></p>
+          <p id='user-stride-length'></p>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Step Goal Challenge</h3>
-          <canvas id="step-goal-chart" width="400" height="400"></canvas>
+          <div style= "position:absolute; height:230px; width:95%">
+            <canvas id="step-goal-chart"></canvas>
+          </div>
         </article>
       </section>
       <nav class='dashTitle'>
@@ -33,11 +39,12 @@
         <article class="widget">
           <h3>H2O Today</h3>
           <p id='user-water'>Ounces of Water Drank Today</p>
-          <p>Goal of 64 Ounces</p>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>H2O This Week</h3>
+          <div style= "position:absolute; height:230px; width:95%">
           <canvas id="hydration-week-chart" width="400" height="400"></canvas>
+          </div>
         </article>
       </section>  
       <nav class='dashTitle'>
@@ -48,13 +55,23 @@
           <h3>Sleep Comparison</h3>
           <canvas id="sleep-chart" width="400" height="400"></canvas>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Hours Slept This Week</h3>
-          <canvas id="hours-slept-week-chart" width="400" height="400"></canvas>
+          <div style= "position:absolute; height:230px; width:95%">
+            <canvas id="hours-slept-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget-data">
+          <h3>Sleep Quality This Week</h3>
+          <div style= "position:absolute; height:230px; width:95%">
+            <canvas id="qual-slept-week-chart" width="400" height="400"></canvas>
+          </div>
         </article>
         <article class="widget">
-          <h3>Sleep Quality This Week</h3>
-            <canvas id="qual-slept-week-chart" width="400" height="400"></canvas>
+          <h3>Longest Night of Sleep</h3>
+          <img class='moon'src='../images/moon.svg'/>
+          <p id='user-longest-sleep-hours'></p>
+          <p id='user-longest-sleep-date'></p>
         </article>
       </section> 
       <nav class='dashTitle'>
@@ -63,23 +80,28 @@
       <section class="widgetContainer">
         <article class="widget">
           <h3>Steps Today</h3>
-          <p id='user-steps'>Steps Taken</p>
+          <p id='user-steps'></p>
         </article>
         <article class="widget">
           <h3>Minutes Active Today</h3>
-          <p id='user-active'>Number of minutes active today</p>
+          <p id='user-active'></p>
+          <p>Goal of 150 Minutes</p>
+          <p id="all-user-active"></p>
         </article>
         <article class="widget">
           <h3>Miles Walked</h3>
-          <p id='user-miles'>Distance walked based on step count</p>
+          <img class='shoe'src='../images/running.svg'/>
+          <p id='user-miles'>Miles</p>
         </article>
         <article class="widget">
           <h3>Activity Challenge</h3>
           <p id='userComp'>Steps, minutes, flights vs user</p>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Weekly Activity</h3>
-          <canvas id="activity-week-chart" width="400" height="400"></canvas>
+          <div style= "position:absolute; height:230px; width:95%">
+            <canvas id="activity-week-chart" width="400" height="400"></canvas>
+          </div>
         </article>
       </section> 
   </main>
