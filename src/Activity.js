@@ -126,6 +126,13 @@ class Activity {
     return Math.round(totalOfMinutes / minutesForDays.length)
   }
 //Make a metric of your own! Document it, calculate it, and display it.
+// Best step day all time
+
+userAllTimeStepRecord() {
+  return this.activeData.activityData
+    .sort((a, b)=> b.numSteps - a.numSteps)
+    .map(step => step.numSteps).shift()
+}
 
 }
 
