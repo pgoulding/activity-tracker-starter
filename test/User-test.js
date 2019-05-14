@@ -28,6 +28,31 @@ describe('User', function () {
     expect(user.returnUserFirstName()).to.equal('Nyasia')
   })
 
+  it('should find the user some friends', function () {
+    expect(user.findFriends()).to.be.a('array')
+    expect(user.findFriends()).to.have.length(2)
+    expect(user.findFriends()).to.deep.equal([{
+      id: 2,
+      name: 'Shayne Swift',
+      address: '747 Dickinson Gardens, South Helga AK 88484-2240',
+      email: 'Lawson74@yahoo.com',
+      strideLength: 4.5,
+      dailyStepGoal: 11000
+    },
+    {
+      id: 3,
+      name: 'Cleo Lindgren',
+      address: '744 Josephine Parkway, Hellerside OH 17625',
+      email: 'Zachery.Von49@gmail.com',
+      strideLength: 5.1,
+      dailyStepGoal: 4000
+    }])
+  })
 
+  it('should return the firends activity data', function () {
+    user.friendOneStepCountForWeek('06/05/2019')
+  })
+
+  it('should ')
 
 })

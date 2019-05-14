@@ -1,17 +1,13 @@
 if (typeof module !== 'undefined') {
   userData = require('../data/users-test-data')
+  activityData = require('../data/activity-test-data')
   UserRepo = require('./UserRepo')
-  hydrationData = require('../data/hydration-test-data')
-  Hydration = require('./User')
-  hydration = new Hydration()
-
 }
 
 class User {
   constructor(userID) {
     this.user = (this.returnUserData(userID));
-    // this.hydration = (new Hydration(userID));
-
+    this.userFriends = (this.findFriends())
   }
 
   returnUserData(index) {
@@ -20,6 +16,38 @@ class User {
 
   returnUserFirstName() {
     return this.user.name.split(' ').shift()
+  }
+
+  findFriends() {
+    let index = this.user.id
+    let userFriends = userData.slice(index, index + 2)
+    return userFriends.length < 2 ? userData.slice(0, 2) : userFriends
+  }
+
+  friendOneStepCountForWeek(weekStart) {
+    
+    let friendOneData = activityData.find(friendData => friendData.userID === this.userFriends[0].id)
+    let index = friendOneData.activityData.findIndex(ele => ele.date === weekStart)
+    let friendOneWeek = friendOneData.activityData.slice(index, index + 7)
+
+    return friendOneWeek
+    // return friendOneData
+    // let allSteps = activityData.reduce((acc, sum) => {
+    //   sum.activityData.forEach(step => {
+    //     if (acc.indexOf(step) === -1) {
+    //       acc.push(step)
+    //     }
+    //   })
+    //   return acc
+    // }, [])
+  } 
+
+  friendTwoStepCountForWeek (weekStart) {
+    let friendTwoData = activityData.find(friendData => friendData.userID === this.userFriends[1].id)
+    let index = friendTwoData.activityData.findIndex(ele => ele.date === weekStart)
+    let friendTwoWeek = friendTwoData.activityData.slice(index, index + 7)
+    
+    return friendTwoWeek
   }
 }
 
