@@ -27,6 +27,7 @@ const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate)
 const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
 
 const userMilesWalkedToday = activity.userMilesWalkedToday(todaysDate);
+const userStepRecordAllTime = activity.userAllTimeStepRecord();
 
 let dayHydration = hydration.amountHydratedByDay(todaysDate);
 let weekHydration = hydration.waterForWeek(todaysDate)
@@ -54,6 +55,7 @@ $('#user-longest-sleep-hours').text(`Hours: ${longestNight.hoursSlept}`);
 $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes today`)
 $('#user-miles').text(`${userMilesWalkedToday}`)
 $('#all-user-active').text(`Average for all users today was ${averageMinsTodayAll} minutes.`)
+$('#user-steps-record').text(`${userStepRecordAllTime}`)
 
 
 /*------------Charts----------------*/
