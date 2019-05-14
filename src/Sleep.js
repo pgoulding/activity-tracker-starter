@@ -109,6 +109,29 @@ class Sleep {
     //   return accs
     // }, 0))
   }
+
+  // Iteration 5 Create your own metric
+  // return the 3 day streaks of sleep quality for a user
+  userSleepQualityStreak () {
+    let results = []
+    let currentSeries = []
+    this.data.sleepData.forEach((currentItem, index) => {
+      if(currentItem === this.data.sleepData[this.data.sleepData.length -1]){
+        return;
+      }
+      let firstNum = currentItem.sleepQuality;
+      let secondNum = this.data.sleepData[index+1].sleepQuality;
+      currentSeries.push(currentItem)
+      if(firstNum > secondNum) {
+        if(currentSeries.length >= 3) {
+          results.push(currentSeries);
+        }
+        currentSeries = [];
+      }
+    })
+    return results;
+  }
+
   //For a given day(identified by the date), find the users who slept the most number of hours(one or more if they tied)
   championOfSleepers(day) {
     let hoursDay = sleepData.map(users => {
