@@ -41,8 +41,7 @@ let alltimeHoursSleep = sleep.averageSleepHoursAllTime()
 let alltimeQualSleep = sleep.averageSleepQualAllTime()
 
 /*----------------User info---------------*/
-$('#user-name').text(`Welcome ${user.returnUserFirstName()}!`)
-$('#full-name').text(user.user.name);
+$('#user-name').text(`${user.user.name}`)
 $('#user-address').text(user.user.address);
 $('#user-email').text(user.user.email);
 $('#user-step-goal').text(`Daily Step Goal: ${user.user.dailyStepGoal}`);
@@ -54,7 +53,7 @@ $('#user-longest-sleep-date').text(`${longestNight.date}`);
 
 $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes today`)
 $('#user-miles').text(`${userMilesWalkedToday} Miles`)
-$('#all-user-active').text(`Average for all users today was ${averageMinsTodayAll} minutes.`)
+$('#all-user-active').text(`Average for all users was ${averageMinsTodayAll} minutes.`)
 $('#user-steps-record').text(`${userStepRecordAllTime} Steps`)
 
 
@@ -323,7 +322,7 @@ let sleepChart = new Chart(sleepToday, {
 
 
 /*------------Circle Graphs--------*/
-const waterPercentage = () => parseFloat(dayHydration / 64 * 100).toFixed(2)
+const waterPercentage = () => Math.round(dayHydration / 64 * 100)
 
 const walkingPercentage = () => parseFloat((todaysSteps / user.user.dailyStepGoal * 100).toFixed(2))
 
@@ -372,10 +371,10 @@ $('#user-steps').html(`<div class="single-chart">
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text x="18" y="20.35" class="percentage">${todaysSteps}</text>
+      <text  x="18" y="20.35" class="percentage">${todaysSteps}</text>
     </svg>
     <p>Your goal was ${user.user.dailyStepGoal} steps.</p>
-    <p>Average for all users today was ${averageStepsTodayAll} steps.</p>
+    <p>Average for all users was ${averageStepsTodayAll} steps.</p>
   </div>`);
 
 $('#user-active').html(`<div class="single-chart">
