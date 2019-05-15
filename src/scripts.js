@@ -48,14 +48,14 @@ $('#user-email').text(user.user.email);
 $('#user-step-goal').text(`Daily Step Goal: ${user.user.dailyStepGoal}`);
 $('#user-stride-length').text(`Stride Length ${user.user.strideLength}`);
 $('#user-profile-pic').html(`<img id="prof-pic" src="../images/${user.user.id}.jpg">`);
-$('#user-longest-sleep-date').text(`Date: ${longestNight.date}`);
-$('#user-longest-sleep-hours').text(`Hours: ${longestNight.hoursSlept}`);
+$('#user-longest-sleep-hours').text(`${longestNight.hoursSlept} Hours`);
+$('#user-longest-sleep-date').text(`${longestNight.date}`);
 /*-------------activity info---------*/
 
 $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes today`)
-$('#user-miles').text(`${userMilesWalkedToday}`)
+$('#user-miles').text(`${userMilesWalkedToday} Miles`)
 $('#all-user-active').text(`Average for all users today was ${averageMinsTodayAll} minutes.`)
-$('#user-steps-record').text(`${userStepRecordAllTime}`)
+$('#user-steps-record').text(`${userStepRecordAllTime} Steps`)
 
 
 /*------------Charts----------------*/
