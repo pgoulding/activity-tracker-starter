@@ -56,7 +56,7 @@ class Sleep {
 
   hoursSleptGivenWeek(weekStart) {
     let firstDayIndex = this.data.sleepData.findIndex(ele => ele.date === weekStart)
-    let week = this.data.sleepData.slice(firstDayIndex, firstDayIndex + 7)
+    let week = this.data.sleepData.slice((firstDayIndex - 6), firstDayIndex + 1)
       .map(hours => { 
         return {date: hours.date, hoursSlept: hours.hoursSlept}
       })
@@ -67,7 +67,7 @@ class Sleep {
 
   sleepQualityGivenWeek(weekStart) {
     let firstDayIndex = this.data.sleepData.findIndex(ele => ele.date === weekStart)
-    let week = this.data.sleepData.slice(firstDayIndex, firstDayIndex + 7)
+    let week = this.data.sleepData.slice((firstDayIndex - 6), firstDayIndex + 1)
       .map(hours => {
         return { date: hours.date, quality: hours.sleepQuality}
       })
@@ -98,7 +98,7 @@ class Sleep {
   allUsersGoodSleepGivenWeek(weekStart) {
     let allUsersWeek = sleepData.reduce((acc, users, i) => {
       let index =  users.sleepData.findIndex(user => user.date === weekStart)
-      acc.push({userID: users.userID, weeklyData: users.sleepData.slice(index, 7)})
+      acc.push({userID: users.userID, weeklyData: users.sleepData.slice((index -6), index +1)})
       return acc
     }, []) 
 
