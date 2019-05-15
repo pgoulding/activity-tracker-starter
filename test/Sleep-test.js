@@ -25,18 +25,15 @@ describe('Sleep Test', function () {
   })
 
   it('should average their hours slept per day', function () {
-    expect(sleep.averageSleepPerDay()).to.be.a('number')
-    expect(sleep.averageSleepPerDay()).to.be.equal(7.06)
+    expect(sleep.averageSleepPerDay()).to.deep.equal('7.06')
   })
 
   it('should return their average sleep quality per day over all time', function () {
-    expect(sleep.averageSleepQualAllTime()).to.be.a('number')
-    expect(sleep.averageSleepQualAllTime()).to.equal(2.48)
+    expect(sleep.averageSleepQualAllTime()).to.equal('2.48')
   })
 
   it('should return their average sleep hours per day over all time', function () {
-    expect(sleep.averageSleepHoursAllTime()).to.be.a('number')
-    expect(sleep.averageSleepHoursAllTime()).to.equal(7.06)
+    expect(sleep.averageSleepHoursAllTime()).to.equal('7.06')
   })
 
   it('should return how many hours they slept for a specific day(identified by a date)', function () {

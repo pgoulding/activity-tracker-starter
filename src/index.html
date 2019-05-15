@@ -4,6 +4,7 @@
     <title>Activity Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../libraries/package/dist/Chart.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
@@ -55,7 +56,9 @@
       <section class="widgetContainer">
         <article class="widget">
           <h3>Sleep Comparison</h3>
+          <div style="position:absolute; height:230px; width:95%">
           <canvas id="sleep-chart" width="400" height="400"></canvas>
+          </div>
         </article>
         <article class="widget-data">
           <h3>Hours Slept This Week</h3>
