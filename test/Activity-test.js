@@ -40,7 +40,22 @@ describe('Activity Test', function () {
   })
 
   it('should return how many minutes active did a user average for a given week', function () {
-    expect(activity.userActiveMinutesPerWeek('06/05/2019')).to.equal(176.43)
+    expect(activity.userAverageMinutesPerWeek('15/05/2019')).to.equal(197.29)
+  })
+
+  it('should return how many steps did a user take per day for a given week', function () {
+    expect(activity.userStepsPerWeek('21/05/2019')).to.be.a('array')
+    expect(activity.userStepsPerWeek('21/05/2019')).to.have.length(7)
+  })
+
+  it('should return how many minutes active was a user active per day for a given week', function () {
+    expect(activity.userMinutesPerWeek('21/05/2019')).to.be.a('array')
+    expect(activity.userMinutesPerWeek('21/05/2019')).to.have.length(7)
+  })
+
+  it('should return how many stairs did a user climb per day for a given week', function () {
+    expect(activity.userStairsPerWeek('21/05/2019')).to.be.a('array')
+    expect(activity.userStairsPerWeek('21/05/2019')).to.have.length(7)
   })
 
   it('should return true or false for if they reached their step goal for a given day(specified by a date)', function () {

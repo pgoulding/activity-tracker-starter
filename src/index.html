@@ -112,10 +112,22 @@
             <canvas id="activity-minutes-chart" width="400" height="400"></canvas>
           </div>
         </article>
-        <article class="widget-data">
-          <h3>Weekly Activity</h3>
+        <article class="widget">
+          <h3>Weekly Minutes Active</h3>
           <div style= "position:absolute; height:230px; width:95%">
-            <canvas id="activity-week-chart" width="400" height="400"></canvas>
+            <canvas id="activity-minutes-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3>Weekly Steps</h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="activity-steps-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3>Weekly Stairs Climbed</h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="activity-stairs-week-chart" width="400" height="400"></canvas>
           </div>
         </article>
         <article class="widget">
@@ -124,6 +136,15 @@
             <p id='user-steps-record'>Steps</p>
           </article>
       </section> 
+      <nav class='dashTitle'>
+        <h2>Friends</h2>
+      </nav>
+      <section class="widgetContainer">
+        <article class="widget">
+          <h3>Steps Today</h3>
+          <p id='user-steps'></p>
+        </article>
+      </section>
   </main>
   <script type="text/javascript" src="../data/activity.js"></script>
   <script type="text/javascript" src="../data/hydration.js"></script>
@@ -137,7 +158,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script type="text/javascript" src="../libraries/moment.js"></script>
   <script type="text/javascript" src="../libraries/package/dist/Chart.bundle.js"></script>
-    <script type="text/javascript" src="../libraries/package/dist/Chart.js"></script>
+  <script type="text/javascript" src="../libraries/package/dist/Chart.js"></script>
   <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html> 

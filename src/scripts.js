@@ -32,6 +32,9 @@ const userMilesWalkedToday = activity.userMilesWalkedToday(todaysDate);
 const userStepRecordAllTime = activity.userAllTimeStepRecord();
 const userStairsClimbedToday = activity.userStairsClimbedToday(todaysDate);
 
+const weeksSteps = activity.userStepsPerWeek(todaysDate)
+const weeksMinutesActive = activity.userMinutesPerWeek(todaysDate)
+const weeksStairs = activity.userStairsPerWeek(todaysDate)
 /*-----------Hydration------------------*/
 let dayHydration = hydration.amountHydratedByDay(todaysDate);
 let weekHydration = hydration.waterForWeek(todaysDate)
@@ -320,7 +323,7 @@ const stairChart = new Chart(activityStairChart, {
 
 
 
-const actiivtyMinutesChart = $('#activity-minutes-chart')
+const activityMinutesChart = $('#activity-minutes-chart')
 
 // const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate);
 // const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
@@ -341,7 +344,7 @@ const averageMinutesActive = {
   borderWidth: 1,
 };
 
-const minutesChart = new Chart(actiivtyMinutesChart, {
+const minutesChart = new Chart(activityMinutesChart, {
   type: 'bar',
   data: {
     labels: ['Minutes'],
@@ -361,44 +364,127 @@ const minutesChart = new Chart(actiivtyMinutesChart, {
   }
 });
 
-// const weeklyMinutesChart = $('#activity-minutes-chart')
 
-// let hydrationWeekChart = new Chart(hydrationWeek, {
-//   type: 'line',
-//   data: {
-//     labels: [`${(weekHydration[0].date)}`, `${(weekHydration[1].date)}`, `${(weekHydration[2].date)}`, `${(weekHydration[3].date)}`, `${(weekHydration[4].date)}`, `${(weekHydration[5].date)}`, `${(weekHydration[6].date)}`],
-//     datasets: [{
-//       label: 'Ounces',
-//       data: [(weekHydration[0].numOunces), (weekHydration[1].numOunces), (weekHydration[2].numOunces), (weekHydration[3].numOunces), (weekHydration[4].numOunces), (weekHydration[5].numOunces), (weekHydration[6].numOunces)],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         'rgba(255, 206, 86, 0.2)',
-//         'rgba(75, 192, 192, 0.2)',
-//         'rgba(153, 102, 255, 0.2)',
-//         'rgba(255, 159, 64, 0.2)'
-//       ],
-//       borderColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-//         'rgba(255, 206, 86, 1)',
-//         'rgba(75, 192, 192, 1)',
-//         'rgba(153, 102, 255, 1)',
-//         'rgba(255, 159, 64, 1)'
-//       ],
-//       borderWidth: 3
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// });
+const weeklyMinutesChart = $('#activity-minutes-week-chart')
+
+let userMinutesWeekChart = new Chart(weeklyMinutesChart, {
+  type: 'line',
+  data: {
+    labels: [`${(weeksMinutesActive[0].date)}`, `${(weeksMinutesActive[1].date)}`, `${(weeksMinutesActive[2].date)}`, `${(weeksMinutesActive[3].date)}`, `${(weeksMinutesActive[4].date)}`, `${(weeksMinutesActive[5].date)}`, `${(weeksMinutesActive[6].date)}`],
+    datasets: [{
+      label: 'Minutes',
+      data: [(weeksMinutesActive[0].minutes), (weeksMinutesActive[1].minutes), (weeksMinutesActive[2].minutes), (weeksMinutesActive[3].minutes), (weeksMinutesActive[4].minutes), (weeksMinutesActive[5].minutes), (weeksMinutesActive[6].minutes)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+const weeklyStepsChart = $('#activity-steps-week-chart')
+
+let userStepsWeekChart = new Chart(weeklyStepsChart, {
+  type: 'bar',
+  data: {
+    labels: [`${(weeksSteps[0].date)}`, `${(weeksSteps[1].date)}`, `${(weeksSteps[2].date)}`, `${(weeksSteps[3].date)}`, `${(weeksSteps[4].date)}`, `${(weeksSteps[5].date)}`, `${(weeksSteps[6].date)}`],
+    datasets: [{
+      label: 'Steps',
+      data: [(weeksSteps[0].steps), (weeksSteps[1].steps), (weeksSteps[2].steps), (weeksSteps[3].steps), (weeksSteps[4].steps), (weeksSteps[5].steps), (weeksSteps[6].steps)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+// const weeksSteps = activity.userStepsPerWeek(todaysDate)
+// const weeksMinutesActive = activity.userMinutesPerWeek(todaysDate)
+// const weeksStairs = activity.userStairsPerWeek(todaysDate)
+
+const weeklyStairsChart = $('#activity-stairs-week-chart')
+
+let userStairsWeekChart = new Chart(weeklyStairsChart, {
+  type: 'bar',
+  data: {
+    labels: [`${(weeksStairs[0].date)}`, `${(weeksStairs[1].date)}`, `${(weeksStairs[2].date)}`, `${(weeksStairs[3].date)}`, `${(weeksStairs[4].date)}`, `${(weeksStairs[5].date)}`, `${(weeksStairs[6].date)}`],
+    datasets: [{
+      label: 'Flights',
+      data: [(weeksStairs[0].stairs), (weeksStairs[1].stairs), (weeksStairs[2].stairs), (weeksStairs[3].stairs), (weeksStairs[4].stairs), (weeksStairs[5].stairs), (weeksStairs[6].stairs)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
 
 /*------------Circle Graphs--------*/
 const waterPercentage = () => Math.round(dayHydration / 64 * 100)

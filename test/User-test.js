@@ -51,6 +51,7 @@ describe('User', function () {
 
   it('should return the first friends activity data', function () {
     expect(user.friendOneStepCountForWeek('06/05/2019')).to.be.a('array')
+    console.log(user.friendOneStepCountForWeek('06/05/2019'))
   })
 
   it('should return the second friends activity data', function () {

@@ -39,16 +39,43 @@ class Activity {
   }
   
   //For a user, how many minutes active did they average for a given week(7 days) ?
-  userActiveMinutesPerWeek(weekStart) {
+  userAverageMinutesPerWeek(weekStart) {
     let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
     let week = this.activeData.activityData
-      .slice(firstDayIndex, firstDayIndex + 7)
+      .slice((firstDayIndex - 6), firstDayIndex + 1)
       .map(minutes => minutes.minutesActive)
 
     let weekTotal = week.reduce((acc, minute) =>
       acc += minute, 0) / 7
       
     return parseFloat(weekTotal.toFixed(2))
+  }
+
+  userStepsPerWeek(weekStart) {
+    let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
+    let week = this.activeData.activityData.slice((firstDayIndex - 6), firstDayIndex + 1)
+      .map(steps => {
+        return { date: steps.date, steps: steps.numSteps }
+      })
+    return week
+  }
+
+  userMinutesPerWeek(weekStart) {
+    let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
+    let week = this.activeData.activityData.slice((firstDayIndex - 6), firstDayIndex + 1)
+      .map(minutes => {
+        return { date: minutes.date, minutes: minutes.minutesActive }
+      })
+    return week
+  }
+
+  userStairsPerWeek(weekStart) {
+    let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
+    let week = this.activeData.activityData.slice((firstDayIndex - 6), firstDayIndex + 1)
+      .map(stairs => {
+        return { date: stairs.date, stairs: stairs.flightsOfStairs}
+      })
+    return week
   }
 
   //For a user, did they reach their step goal for a given day(specified by a date) ?
