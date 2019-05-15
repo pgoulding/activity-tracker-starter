@@ -118,20 +118,20 @@ class Activity {
     return Math.round(totalOfMinutes / minutesForDays.length)
   }
 
-// user step streak, find what days user had steps steaks 3 days or greater
+  // user step streak, find what days user had steps steaks 3 days or greater
 
   userStepStreak () {
     let results = []
     let currentSeries = []
     this.activeData.activityData.forEach((currentItem, index) => {
-      if(currentItem === this.activeData.activityData[this.activeData.activityData.length -1]){
+      if (currentItem === this.activeData.activityData[this.activeData.activityData.length - 1]) {
         return;
       }
       let firstNum = currentItem.numSteps;
-      let secondNum = this.activeData.activityData[index+1].numSteps;
+      let secondNum = this.activeData.activityData[index + 1].numSteps;
       currentSeries.push(currentItem)
-      if(firstNum > secondNum) {
-        if(currentSeries.length >= 3) {
+      if (firstNum > secondNum) {
+        if (currentSeries.length >= 3) {
           results.push(currentSeries);
         }
         currentSeries = [];
@@ -140,25 +140,25 @@ class Activity {
     return results;
   }
 
-//For a user, find their all - time stair climbing record
-userAllTimeStairRecord() {
-  let stepRecord = this.activeData.activityData
-    .sort((a, b)=> b.flightsOfStairs - a.flightsOfStairs)
-    .map(stair => stair.flightsOfStairs).shift();
+  //For a user, find their all - time stair climbing record
+  userAllTimeStairRecord() {
+    let stepRecord = this.activeData.activityData
+      .sort((a, b)=> b.flightsOfStairs - a.flightsOfStairs)
+      .map(stair => stair.flightsOfStairs).shift();
   
-  return stepRecord;
-}
+    return stepRecord;
+  }
 
   //Make a metric of your own! Document it, calculate it, and display it.
-// Best step day all time
+  // Best step day all time
 
-userAllTimeStepRecord() {
-  let stepRecord = this.activeData.activityData
-    .sort((a, b)=> b.numSteps - a.numSteps)
-    .map(step => step.numSteps).shift()
+  userAllTimeStepRecord() {
+    let stepRecord = this.activeData.activityData
+      .sort((a, b)=> b.numSteps - a.numSteps)
+      .map(step => step.numSteps).shift()
 
     return stepRecord
-}
+  }
 }
 
 if (typeof module !== 'undefined') {
