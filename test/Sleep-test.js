@@ -44,11 +44,11 @@ describe('Sleep Test', function () {
   })
 
   it('should return how many hours slept each day over the course of a given week(7 days)', function () {
-    expect(sleep.hoursSleptGivenWeek('10/05/2019')).to.have.length(7)
+    expect(sleep.hoursSleptGivenWeek('30/05/2019')).to.have.length(7)
   })
 
   it('should return their sleep quality each day over the course of a given week(7 days)', function () {
-    expect(sleep.sleepQualityGivenWeek('06/05/2019')).to.have.length(7)
+    expect(sleep.sleepQualityGivenWeek('22/06/2019')).to.have.length(7)
   })
 
   it('should return for all users, the average sleep quality', function () {
@@ -70,11 +70,10 @@ describe('Sleep Test', function () {
   })
 
   it('should find all users who average a sleep quality greater than 3 for a given week(7 days) - you should be able to calculate this for any week', function () {
-    // console.log(sleep.allUsersGoodSleepGivenWeek('06/05/2019'))
-    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019')).to.be.a('array')
-    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019')[2]).to.be.a('object').that.includes({ userID: 3, averageSleepQual: '3.0' })
-    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019')).to.have.length(4)
-    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019'))
+    expect(sleep.allUsersGoodSleepGivenWeek('22/07/2019')).to.be.a('array')
+    expect(sleep.allUsersGoodSleepGivenWeek('22/07/2019')[2]).to.be.a('object').that.includes({ userID: 4, averageSleepQual: '3.0' })
+    expect(sleep.allUsersGoodSleepGivenWeek('22/07/2019')).to.have.length(5)
+
   })
 
   it('should display the night they slept the longest', function () {

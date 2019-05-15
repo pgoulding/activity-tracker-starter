@@ -19,19 +19,27 @@ console.log('activity: ', activity)
 
 /*------------Methods Called-----------*/
 
-let usersStepAverage = userRepo.averageStepGoal();
-const todaysSteps = activity.userStepsTakenToday(todaysDate);
+/*-----------activity------------------*/
 const averageStepsTodayAll = activity.allUsersStepsTakenOnDate(todaysDate);
+const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate);
+const averageStairsTodayAll =activity.allUsersStairsClimbedToday(todaysDate)
+const usersStepAverage = userRepo.averageStepGoal();
 
-const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate)
+
+const todaysSteps = activity.userStepsTakenToday(todaysDate);
 const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
-
 const userMilesWalkedToday = activity.userMilesWalkedToday(todaysDate);
-const userStepRecordAllTime = activity.userAllTimeStepRecord();
+const userStairsClimbedToday = activity.userStairsClimbedToday(todaysDate);
 
+const weeksSteps = activity.userStepsPerWeek(todaysDate)
+const weeksMinutesActive = activity.userMinutesPerWeek(todaysDate)
+const weeksStairs = activity.userStairsPerWeek(todaysDate)
+/*-----------Hydration------------------*/
 let dayHydration = hydration.amountHydratedByDay(todaysDate);
 let weekHydration = hydration.waterForWeek(todaysDate)
 
+
+/*-----------Sleep------------------*/
 let daySleep = sleep.hoursSleptOnDay(todaysDate);
 let qualitySleep = sleep.qualityOnDay(todaysDate);
 let weekSleep = sleep.hoursSleptGivenWeek(todaysDate)
@@ -54,8 +62,12 @@ $('#user-longest-sleep-date').text(`${longestNight.date}`);
 $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes today`)
 $('#user-miles').text(`${userMilesWalkedToday} Miles`)
 $('#all-user-active').text(`Average for all users was ${averageMinsTodayAll} minutes.`)
-$('#user-steps-record').text(`${userStepRecordAllTime} Steps`)
 
+/*-------------Frineds Dash---------*/
+const competitionResults = activity.compareTheUserandFriends(todaysDate)
+$('#first-place').html(`<p>${competitionResults[0].name}, got ${competitionResults[0].totalSteps} steps for first place!</p>`)
+$('#second-place').html(`<p>${competitionResults[1].name}, got ${competitionResults[1].totalSteps} steps for second place!</p>`)
+$('#third-place').html(`<p>${competitionResults[2].name}, got ${competitionResults[2].totalSteps}  steps for third place!</p>`)
 
 /*------------Charts----------------*/
 const sleepQual = $('#qual-slept-week-chart');
@@ -64,6 +76,8 @@ const hydrationWeek = $('#hydration-week-chart');
 const activityWeek = $('#activity-week-chart');
 const stepGoals = $('#step-goal-chart');
 const sleepToday = $('#sleep-chart');
+const activityStepChart = $("#activity-step-chart");
+const activityStairChart = $('#activity-stairs-chart');
 
 let hoursSleptChart = new Chart(sleepHours, {
   type: 'bar',
@@ -176,43 +190,6 @@ let hydrationWeekChart = new Chart(hydrationWeek, {
   }
 });
 
-// let activityWeekChart = new Chart(activityWeek, {
-//   type: 'bar',
-//   data: {
-//     labels: [`${(weekHydration[0].date)}`, `${(weekHydration[1].date)}`, `${(weekHydration[2].date)}`, `${(weekHydration[3].date)}`, `${(weekHydration[4].date)}`, `${(weekHydration[5].date)}`, `${(weekHydration[6].date)}`],
-//     datasets: [{
-//       label: 'Ounces',
-//       data: [(weekHydration[0].numOunces), (weekHydration[1].numOunces), (weekHydration[2].numOunces), (weekHydration[3].numOunces), (weekHydration[4].numOunces), (weekHydration[5].numOunces), (weekHydration[6].numOunces)],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         'rgba(255, 206, 86, 0.2)',
-//         'rgba(75, 192, 192, 0.2)',
-//         'rgba(153, 102, 255, 0.2)',
-//         'rgba(255, 159, 64, 0.2)'
-//       ],
-//       borderColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-//         'rgba(255, 206, 86, 1)',
-//         'rgba(75, 192, 192, 1)',
-//         'rgba(153, 102, 255, 1)',
-//         'rgba(255, 159, 64, 1)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// });
-
 let stepGoalComparisonChart = new Chart(stepGoals, {
   type: 'pie',
   data: {
@@ -277,50 +254,336 @@ let sleepChart = new Chart(sleepToday, {
   }
 })
 
-// const activityChart = $("#activity-week-chart");
+const userStepCount = {
+  label: 'Your Step Count',
+  data: [todaysSteps],
+  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+  borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
+  borderWidth: 1,
+};
 
-// Chart.defaults.global.defaultFontFamily = "Lato";
-// Chart.defaults.global.defaultFontSize = 18;
+const averageStepCount = {
+  label: 'Average Step Count',
+  data: [averageStepsTodayAll],
+  backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
+  borderWidth: 1,
+};
 
-// const activityStepCount = {
-//   label: 'Sleep Quality',
-//   data: [5.5, 3.4],
-//   backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-//   borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
-//   borderWidth: 1,
-// };
-
-// const activityFlightsStairs = {
-//   label: 'Sleep Hours',
-//   data: [3.7, 5.7],
-//   backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-//   borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
-//   borderWidth: 1,
-// };
-
-// const activityMinutes
-
-// const activityData = {
-//   labels: ["Average", "You"],
-//   datasets: [sleepQuality, sleepHours]
-// };
-
-
-// const activityChart = new Chart(activityWeek, {
-//   type: 'bar',
-//   data: activityData,
-//   options: {
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// });
+const stepChart = new Chart(activityStepChart, {
+  type: 'bar',
+  data: {
+    labels: ['Steps'],
+    datasets:[averageStepCount, userStepCount]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
 
 
+const userStairCount = {
+  label: 'Your Stairs Count',
+  data: [userStairsClimbedToday],
+  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+  borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
+  borderWidth: 1,
+};
+
+const averageStairCount = {
+  label: 'Average Stair Count',
+  data: [averageStairsTodayAll],
+  backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
+  borderWidth: 1,
+};
+
+const stairChart = new Chart(activityStairChart, {
+  type: 'bar',
+  data: {
+    labels: ['Stairs'],
+    datasets: [
+      averageStairCount, 
+      userStairCount
+    ]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+
+
+const activityMinutesChart = $('#activity-minutes-chart')
+
+// const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate);
+// const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
+
+const userMinutesActive = {
+  label: 'Your Minutes Active',
+  data: [todaysMinutesActive],
+  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+  borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
+  borderWidth: 1,
+};
+
+const averageMinutesActive = {
+  label: 'Average Minutes Active',
+  data: [averageMinsTodayAll],
+  backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
+  borderWidth: 1,
+};
+
+const minutesChart = new Chart(activityMinutesChart, {
+  type: 'bar',
+  data: {
+    labels: ['Minutes'],
+    datasets: [
+      averageMinutesActive,
+      userMinutesActive
+    ]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+
+const weeklyMinutesChart = $('#activity-minutes-week-chart')
+
+let userMinutesWeekChart = new Chart(weeklyMinutesChart, {
+  type: 'line',
+  data: {
+    labels: [`${(weeksMinutesActive[0].date)}`, `${(weeksMinutesActive[1].date)}`, `${(weeksMinutesActive[2].date)}`, `${(weeksMinutesActive[3].date)}`, `${(weeksMinutesActive[4].date)}`, `${(weeksMinutesActive[5].date)}`, `${(weeksMinutesActive[6].date)}`],
+    datasets: [{
+      label: 'Minutes',
+      data: [(weeksMinutesActive[0].minutes), (weeksMinutesActive[1].minutes), (weeksMinutesActive[2].minutes), (weeksMinutesActive[3].minutes), (weeksMinutesActive[4].minutes), (weeksMinutesActive[5].minutes), (weeksMinutesActive[6].minutes)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+const weeklyStepsChart = $('#activity-steps-week-chart')
+
+let userStepsWeekChart = new Chart(weeklyStepsChart, {
+  type: 'bar',
+  data: {
+    labels: [`${(weeksSteps[0].date)}`, `${(weeksSteps[1].date)}`, `${(weeksSteps[2].date)}`, `${(weeksSteps[3].date)}`, `${(weeksSteps[4].date)}`, `${(weeksSteps[5].date)}`, `${(weeksSteps[6].date)}`],
+    datasets: [{
+      label: 'Steps',
+      data: [(weeksSteps[0].steps), (weeksSteps[1].steps), (weeksSteps[2].steps), (weeksSteps[3].steps), (weeksSteps[4].steps), (weeksSteps[5].steps), (weeksSteps[6].steps)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+const weeklyStairsChart = $('#activity-stairs-week-chart')
+
+let userStairsWeekChart = new Chart(weeklyStairsChart, {
+  type: 'bar',
+  data: {
+    labels: [`${(weeksStairs[0].date)}`, `${(weeksStairs[1].date)}`, `${(weeksStairs[2].date)}`, `${(weeksStairs[3].date)}`, `${(weeksStairs[4].date)}`, `${(weeksStairs[5].date)}`, `${(weeksStairs[6].date)}`],
+    datasets: [{
+      label: 'Flights',
+      data: [(weeksStairs[0].stairs), (weeksStairs[1].stairs), (weeksStairs[2].stairs), (weeksStairs[3].stairs), (weeksStairs[4].stairs), (weeksStairs[5].stairs), (weeksStairs[6].stairs)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+
+const friendOneChart = $('#friend-one-week-chart')
+
+const friendOneStepCount = user.friendOneStepCountForWeek(todaysDate)
+$('#friend-one').html(`<h3>${user.userFriends[0].name}<img id="friend-one-img" src="../images/${user.userFriends[0].id}.jpg"></h3>`)
+
+let friendOneStepsWeekChart = new Chart(friendOneChart, {
+  type: 'bar',
+  data: {
+    labels: [`${(friendOneStepCount[0].date)}`, `${(friendOneStepCount[1].date)}`, `${(friendOneStepCount[2].date)}`, `${(friendOneStepCount[3].date)}`, `${(friendOneStepCount[4].date)}`, `${(friendOneStepCount[5].date)}`, `${(friendOneStepCount[6].date)}`],
+    datasets: [{
+      label: 'Steps',
+      data: [(friendOneStepCount[0].numSteps), (friendOneStepCount[1].numSteps), (friendOneStepCount[2].numSteps), (friendOneStepCount[3].numSteps), (friendOneStepCount[4].numSteps), (friendOneStepCount[5].numSteps), (friendOneStepCount[6].numSteps)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+const friendTwoChart = $('#friend-two-week-chart')
+
+const friendTwoStepCount = user.friendTwoStepCountForWeek(todaysDate)
+$('#friend-two').html(`<h3>${user.userFriends[1].name}<img id="friend-two-img" src="../images/${user.userFriends[1].id}.jpg"></h3>`)
+
+let friendTwoStepsWeekChart = new Chart(friendTwoChart, {
+  type: 'bar',
+  data: {
+    labels: [`${(friendTwoStepCount[0].date)}`, 
+      `${(friendTwoStepCount[1].date)}`, 
+      `${(friendTwoStepCount[2].date)}`, 
+      `${(friendTwoStepCount[3].date)}`, 
+      `${(friendTwoStepCount[4].date)}`, 
+      `${(friendTwoStepCount[5].date)}`, 
+      `${(friendTwoStepCount[6].date)}`],
+    datasets: [{
+      label: 'Steps',
+      data: [(friendTwoStepCount[0].numSteps), 
+        (friendTwoStepCount[1].numSteps), 
+        (friendTwoStepCount[2].numSteps), 
+        (friendTwoStepCount[3].numSteps), 
+        (friendTwoStepCount[4].numSteps), 
+        (friendTwoStepCount[5].numSteps), 
+        (friendTwoStepCount[6].numSteps)],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        'rgba(255, 159, 64, 0.2)'
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderWidth: 3
+    }]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+const userStepRecordAllTime = activity.userAllTimeStepRecord();
+$('#user-steps-record').text(`${userStepRecordAllTime} Steps`)
 /*------------Circle Graphs--------*/
 const waterPercentage = () => Math.round(dayHydration / 64 * 100)
 
@@ -393,4 +656,3 @@ $('#user-active').html(`<div class="single-chart">
       <text x="18" y="20.35" class="percentage">${todaysMinutesActive}</text>
     </svg>
   </div>`);
-

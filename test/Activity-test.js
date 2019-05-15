@@ -34,8 +34,33 @@ describe('Activity Test', function () {
     expect(activity.userActiveMinutesPerDay('06/05/2019')).to.equal(204)
   })
 
+  it('should return how many flights of stairs the user has climbed for a given day(specified by a date)', function () {
+    expect(activity.userStairsClimbedToday('06/05/2019')).to.be.a('number')
+    expect(activity.userStairsClimbedToday('06/05/2019')).to.equal(46)
+  })
+
   it('should return how many minutes active did a user average for a given week', function () {
-    expect(activity.userActiveMinutesPerWeek('06/05/2019')).to.equal(176.43)
+    expect(activity.userAverageMinutesPerWeek('15/05/2019')).to.equal(197.29)
+  })
+
+  it('should return how many steps did a user take per day for a given week', function () {
+    expect(activity.userStepsPerWeek('21/05/2019')).to.be.a('array')
+    expect(activity.userStepsPerWeek('21/05/2019')).to.have.length(7)
+  })
+
+  it('should return the how many steps a user took on a given week', function () {
+    expect(activity.userTotalStepsOnWeek('06/05/2019')).to.be.a('number')
+    expect(activity.userTotalStepsOnWeek('21/06/2019')).to.equal(67564)
+  })
+
+  it('should return how many minutes active was a user active per day for a given week', function () {
+    expect(activity.userMinutesPerWeek('21/05/2019')).to.be.a('array')
+    expect(activity.userMinutesPerWeek('21/05/2019')).to.have.length(7)
+  })
+
+  it('should return how many stairs did a user climb per day for a given week', function () {
+    expect(activity.userStairsPerWeek('21/05/2019')).to.be.a('array')
+    expect(activity.userStairsPerWeek('21/05/2019')).to.have.length(7)
   })
 
   it('should return true or false for if they reached their step goal for a given day(specified by a date)', function () {
@@ -57,6 +82,10 @@ describe('Activity Test', function () {
 
   it('should return the average number of steps taken for a specific date', function () {
     expect(activity.allUsersStepsTakenOnDate('06/05/2019')).to.be.equal(6872)
+  })
+
+  it('should compare the user and friends', function () {
+    console.log(activity.compareTheUserandFriends('21/05/2019'))
   })
 
   it('should return the average number of minutes active for a specific date', function () {

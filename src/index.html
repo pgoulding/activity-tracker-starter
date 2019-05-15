@@ -2,6 +2,7 @@
 <html lang='en-us'>
   <head>
     <title>Activity Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../libraries/package/dist/Chart.css">
@@ -95,13 +96,39 @@
           <p id='user-miles'>Miles</p>
         </article>
         <article class="widget">
-          <h3>Activity Challenge</h3>
-          <p id='userComp'>Steps, minutes, flights vs user</p>
+          <h3>Step Challenge</h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="activity-step-chart" width="400" height="400"></canvas>
+          </div>
         </article>
-        <article class="widget-data">
-          <h3>Weekly Activity</h3>
+        <article class="widget">
+          <h3>Stairs Challenge</h3>
+          <div style="position:absolute; height:230px; width:95%">
+          <canvas id="activity-stairs-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3>Minutes Active Challenge</h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="activity-minutes-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3>Weekly Minutes Active</h3>
           <div style= "position:absolute; height:230px; width:95%">
-            <canvas id="activity-week-chart" width="400" height="400"></canvas>
+            <canvas id="activity-minutes-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3>Weekly Steps</h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="activity-steps-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3>Weekly Stairs Climbed</h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="activity-stairs-week-chart" width="400" height="400"></canvas>
           </div>
         </article>
         <article class="widget">
@@ -110,6 +137,29 @@
             <p id='user-steps-record'>Steps</p>
           </article>
       </section> 
+      <nav class='dashTitle'>
+        <h2>Friends</h2>
+      </nav>
+      <section class="widgetContainer">
+        <article class="widget">
+          <h3 id="friend-one"></h3>
+          <div style="position:absolute; height:230px; width:95%">
+          <canvas id="friend-one-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3 id="friend-two"></h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="friend-two-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3 id="friend-competition">High Score for the week!</h3>
+          <p id="first-place"></p>
+          <p id="second-place"></p>
+          <p id="third-place"></p>
+        </article>
+      </section>
   </main>
   <script type="text/javascript" src="../data/activity.js"></script>
   <script type="text/javascript" src="../data/hydration.js"></script>
@@ -123,7 +173,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script type="text/javascript" src="../libraries/moment.js"></script>
   <script type="text/javascript" src="../libraries/package/dist/Chart.bundle.js"></script>
-    <script type="text/javascript" src="../libraries/package/dist/Chart.js"></script>
+  <script type="text/javascript" src="../libraries/package/dist/Chart.js"></script>
   <script type="text/javascript" src="./scripts.js"></script>
   </body>
 </html> 

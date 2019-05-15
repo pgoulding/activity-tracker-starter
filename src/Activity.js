@@ -32,12 +32,17 @@ class Activity {
     let todaysData = this.activeData.activityData.find(today => today.date === day)
     return todaysData.minutesActive
   }
+
+  userStairsClimbedToday(day) {
+    let todaysData = this.activeData.activityData.find(today => today.date === day)
+    return todaysData.flightsOfStairs
+  }
   
   //For a user, how many minutes active did they average for a given week(7 days) ?
-  userActiveMinutesPerWeek(weekStart) {
+  userAverageMinutesPerWeek(weekStart) {
     let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
     let week = this.activeData.activityData
-      .slice(firstDayIndex, firstDayIndex + 7)
+      .slice((firstDayIndex - 6), firstDayIndex + 1)
       .map(minutes => minutes.minutesActive)
 
     let weekTotal = week.reduce((acc, minute) =>
@@ -45,6 +50,34 @@ class Activity {
       
     return parseFloat(weekTotal.toFixed(2))
   }
+
+  userStepsPerWeek(weekStart) {
+    let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
+    let week = this.activeData.activityData.slice((firstDayIndex - 6), firstDayIndex + 1)
+      .map(steps => {
+        return { date: steps.date, steps: steps.numSteps }
+      })
+    return week
+  }
+
+  userMinutesPerWeek(weekStart) {
+    let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
+    let week = this.activeData.activityData.slice((firstDayIndex - 6), firstDayIndex + 1)
+      .map(minutes => {
+        return { date: minutes.date, minutes: minutes.minutesActive }
+      })
+    return week
+  }
+
+  userStairsPerWeek(weekStart) {
+    let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
+    let week = this.activeData.activityData.slice((firstDayIndex - 6), firstDayIndex + 1)
+      .map(stairs => {
+        return { date: stairs.date, stairs: stairs.flightsOfStairs}
+      })
+    return week
+  }
+
   //For a user, did they reach their step goal for a given day(specified by a date) ?
   userStepGoalReached(day) {
     let activityDataForDay = this.activeData.activityData.find(ele => ele.date === day)
@@ -60,6 +93,26 @@ class Activity {
       .filter(steps =>  steps.numSteps > dailyStepGoal)
 
     return filteredDays.map(date => date.date)
+  }
+
+  userTotalStepsOnWeek(weekStart) {
+    let index = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
+    let userWeek = this.activeData.activityData.slice((index - 6), index + 1)
+    let userSteps = userWeek.map(steps => steps.numSteps)
+    let userTotal = userSteps.reduce((acc, sum) => {
+      acc += sum
+      return acc;
+    }, 0);
+
+    return userTotal
+  }
+
+  compareTheUserandFriends(weekStart) {
+    let userTotal = this.userTotalStepsOnWeek(weekStart)
+    let friendOneTotal = user.friendOneStepAverageForWeek(weekStart)
+    let friendTwoTotal = user.friendTwoStepAverageForWeek(weekStart)
+    let totals = [{ id: user.user.id, name: user.user.name, totalSteps: userTotal }, { id: user.userFriends[0].id, name: user.userFriends[0].name, totalSteps: friendOneTotal }, { id: user.userFriends[1].id, name: user.userFriends[1].name, totalSteps: friendTwoTotal}]
+    return totals.sort((a,b) => b.totalSteps - a.totalSteps)
   }
 
   //For *ALL* users, what is the average number of:
@@ -140,9 +193,9 @@ class Activity {
     return results;
   }
 
-  //For a user, find their all - time stair climbing record
+  // For a user, find their all - time stair climbing record
   userAllTimeStairRecord() {
-    let stepRecord = this.activeData.activityData
+    var stepRecord = this.activeData.activityData
       .sort((a, b)=> b.flightsOfStairs - a.flightsOfStairs)
       .map(stair => stair.flightsOfStairs).shift();
   
@@ -153,7 +206,7 @@ class Activity {
   // Best step day all time
 
   userAllTimeStepRecord() {
-    let stepRecord = this.activeData.activityData
+    var stepRecord = this.activeData.activityData
       .sort((a, b)=> b.numSteps - a.numSteps)
       .map(step => step.numSteps).shift()
 
