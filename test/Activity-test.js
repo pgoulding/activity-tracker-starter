@@ -20,7 +20,7 @@ describe('Activity Test', function () {
     expect(activity).to.be.a.instanceOf(Activity)
   })
 
-  it('should return the actuivity data based on the user ID', function () {
+  it('should return the activity data based on the user ID', function () {
     expect(activity.findActivityData(1)).to.be.equal(data[0])
   })
 
@@ -45,13 +45,9 @@ describe('Activity Test', function () {
     expect(activity.userStepGoalReached('28/05/2019')).to.equal(true)
   })
 
-  it('should find all the days where the user exceede their step goal', function () {
+  it('should find all the days where the user exceeded their step goal', function () {
     expect(activity.userDaysExceededStepGoal()).to.be.a('array')
     expect(activity.userDaysExceededStepGoal()).to.not.include('06/05/2019')
-  })
-
-  it('should find their all time user record of flights of stairs', function () {
-    expect(activity.userAllTimeStairRecord()).to.equal(50)
   })
 
   it('should return the average number of stairs climbed for a specified date for all users', function () {
@@ -67,6 +63,17 @@ describe('Activity Test', function () {
     expect(activity.allUsersMinutesActiveForDate('06/05/2019')).to.equal(128)
   })
 
-  
+  it('should find all the three day step streaks for a user', function () {
+    expect(activity.userStepStreak()).to.be.a('array')
+  })
+
+  it('should find a users all time step record', function () {
+    expect(activity.userAllTimeStepRecord()).to.be.a('number');
+    expect(activity.userAllTimeStepRecord()).to.equal(14811)
+  })
+
+  it('should find their all time user record of flights of stairs', function () {
+    expect(activity.userAllTimeStairRecord()).to.equal(50)
+  })
 
 })

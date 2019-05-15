@@ -96,19 +96,47 @@ class Sleep {
   //Find all users who average a sleep quality greater than 3 for a given week(7 days) - you should be able to calculate this for any week, not just the latest week
 
   allUsersGoodSleepGivenWeek(weekStart) {
-    // let allSleep = userSleepData.reduce((acc, sum) => {
-    //   sum.sleepData.forEach(sums => {
-    //     if (acc.indexOf(sums) === -1)
-    //       acc.push(sums)
-    //   })
-    //   return acc;
-    // }, [])
-    // console.log(userSleepData[0].sleepData)
-    // .reduce((accs, summed) => {
-    //   accs += summed.sleepQuality
-    //   return accs
-    // }, 0))
+    let allUsersWeek = sleepData.reduce((acc, users, i) => {
+      let index =  users.sleepData.findIndex(user => user.date === weekStart)
+      acc.push({userID: users.userID, weeklyData: users.sleepData.slice(index, 7)})
+      return acc
+    }, []) 
+
+    let averageHours = allUsersWeek.reduce((acc, sum) => {
+      acc.push({userID: sum.userID, averageSleepQual: parseFloat(sum.weeklyData.reduce((accum, hour) => {
+        accum += hour.sleepQuality
+        return accum
+      }, 0) / 7).toFixed(1)
+      })
+      return acc
+    }, [])
+    let greaterThanThree = averageHours.filter(item => item.averageSleepQual >= 3)
+
+    return greaterThanThree
   }
+
+  // Iteration 5 Create your own metric
+  // return the 3 day streaks of sleep quality for a user
+  userSleepQualityStreak () {
+    let results = []
+    let currentSeries = []
+    this.data.sleepData.forEach((currentItem, index) => {
+      if (currentItem === this.data.sleepData[this.data.sleepData.length - 1]) {
+        return;
+      }
+      let firstNum = currentItem.sleepQuality;
+      let secondNum = this.data.sleepData[index + 1].sleepQuality;
+      currentSeries.push(currentItem)
+      if (firstNum > secondNum) {
+        if (currentSeries.length >= 3) {
+          results.push(currentSeries);
+        }
+        currentSeries = [];
+      }
+    })
+    return results;
+  }
+
   //For a given day(identified by the date), find the users who slept the most number of hours(one or more if they tied)
   championOfSleepers(day) {
     let hoursDay = sleepData.map(users => {
@@ -117,10 +145,10 @@ class Sleep {
     let newHoursDay = hoursDay.map(singleDay => {
       return {userID: singleDay.userID, hours: singleDay.date.hoursSlept}
     })
-    let user = newHoursDay.sort((a,b) => b.hours - a.hours)
+    let user = newHoursDay.sort((a, b) => b.hours - a.hours)
     let userArr = [];
     let test = user.forEach(users => {
-      if(user[0].hours === users.hours){
+      if (user[0].hours === users.hours) {
         userArr.push(users)
       } else {
         return userArr
@@ -128,12 +156,13 @@ class Sleep {
     })
     return userArr
   }
-// Make your own metric
-// For a user, their longest night of sleep.
+  // Make your own metric
+  // For a user, their longest night of sleep.
   longestNightSleep() {
-    return this.data.sleepData.sort((a,b) => {
+    let longestNight = this.data.sleepData.sort((a, b) => {
       return b.hoursSlept - a.hoursSlept
     }).shift()
+    return longestNight
   }
 }
 

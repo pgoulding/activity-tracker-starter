@@ -60,9 +60,21 @@ describe('Sleep Test', function () {
 
   })
 
+  it('should find all the three day sleep quality streaks for a user', function () {
+    expect(sleep.userSleepQualityStreak()).to.be.a('array')
+  })
+
   it('should find the users who slept the most hours for a given day (one or more if they tied)', function () {
     sleep.championOfSleepers('06/05/2019')
     expect(sleep.championOfSleepers('06/05/2019')).to.be.a('array')
+  })
+
+  it('should find all users who average a sleep quality greater than 3 for a given week(7 days) - you should be able to calculate this for any week', function () {
+    // console.log(sleep.allUsersGoodSleepGivenWeek('06/05/2019'))
+    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019')).to.be.a('array')
+    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019')[2]).to.be.a('object').that.includes({ userID: 3, averageSleepQual: '3.0' })
+    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019')).to.have.length(4)
+    expect(sleep.allUsersGoodSleepGivenWeek('06/05/2019'))
   })
 
   it('should display the night they slept the longest', function () {

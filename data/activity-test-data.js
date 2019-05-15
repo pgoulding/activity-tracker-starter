@@ -8,6 +8,7 @@ const activityData = [
         "minutesActive": 204,
         "flightsOfStairs": 46
       },
+
       {
         "date": "07/05/2019",
         "numSteps": 3079,

@@ -27,6 +27,7 @@ const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate)
 const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
 
 const userMilesWalkedToday = activity.userMilesWalkedToday(todaysDate);
+const userStepRecordAllTime = activity.userAllTimeStepRecord();
 
 let dayHydration = hydration.amountHydratedByDay(todaysDate);
 let weekHydration = hydration.waterForWeek(todaysDate)
@@ -40,20 +41,20 @@ let alltimeHoursSleep = sleep.averageSleepHoursAllTime()
 let alltimeQualSleep = sleep.averageSleepQualAllTime()
 
 /*----------------User info---------------*/
-$('#user-name').text(`Welcome ${user.returnUserFirstName()}!`)
-$('#full-name').text(user.user.name);
+$('#user-name').text(`${user.user.name}`)
 $('#user-address').text(user.user.address);
 $('#user-email').text(user.user.email);
 $('#user-step-goal').text(`Daily Step Goal: ${user.user.dailyStepGoal}`);
 $('#user-stride-length').text(`Stride Length ${user.user.strideLength}`);
 $('#user-profile-pic').html(`<img id="prof-pic" src="../images/${user.user.id}.jpg">`);
-$('#user-longest-sleep-date').text(`Date: ${longestNight.date}`);
-$('#user-longest-sleep-hours').text(`Hours: ${longestNight.hoursSlept}`);
+$('#user-longest-sleep-hours').text(`${longestNight.hoursSlept} Hours`);
+$('#user-longest-sleep-date').text(`${longestNight.date}`);
 /*-------------activity info---------*/
 
 $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes today`)
-$('#user-miles').text(`${userMilesWalkedToday}`)
-$('#all-user-active').text(`Average for all users today is ${averageMinsTodayAll}`)
+$('#user-miles').text(`${userMilesWalkedToday} Miles`)
+$('#all-user-active').text(`Average for all users was ${averageMinsTodayAll} minutes.`)
+$('#user-steps-record').text(`${userStepRecordAllTime} Steps`)
 
 
 /*------------Charts----------------*/
@@ -87,7 +88,7 @@ let hoursSleptChart = new Chart(sleepHours, {
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -124,7 +125,7 @@ let sleepQualityChart = new Chart(sleepQual, {
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -161,7 +162,7 @@ let hydrationWeekChart = new Chart(hydrationWeek, {
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -227,7 +228,7 @@ let stepGoalComparisonChart = new Chart(stepGoals, {
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -244,10 +245,10 @@ let stepGoalComparisonChart = new Chart(stepGoals, {
 let sleepChart = new Chart(sleepToday, {
   type: 'bar',
   data: {
-    labels: [`Hours Slept Today`, `Sleep Quality Today`, `` ,`Average Hours Slept`, `Average Sleep Quality`],
+    labels: [`Hours Slept Today`, `Sleep Quality Today`, ``, `Average Hours Slept`, `Average Sleep Quality`],
     datasets: [{
       label: 'Sleep',
-      data: [(daySleep), (qualitySleep), null,(alltimeHoursSleep), (alltimeQualSleep) ],
+      data: [(daySleep), (qualitySleep), null, (alltimeHoursSleep), (alltimeQualSleep) ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -262,7 +263,7 @@ let sleepChart = new Chart(sleepToday, {
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)'
       ],
-      borderWidth: 1
+      borderWidth: 3
     }]
   },
   options: {
@@ -321,7 +322,7 @@ let sleepChart = new Chart(sleepToday, {
 
 
 /*------------Circle Graphs--------*/
-const waterPercentage = () => parseFloat(dayHydration / 64 * 100).toFixed(2)
+const waterPercentage = () => Math.round(dayHydration / 64 * 100)
 
 const walkingPercentage = () => parseFloat((todaysSteps / user.user.dailyStepGoal * 100).toFixed(2))
 
@@ -353,7 +354,8 @@ $('#user-water').html(`<div class="single-chart">
       />
       <text x="18" y="20.35" class="percentage">${waterPercentage()}%</text>
     </svg>
-    <p>You drank ${dayHydration} oz's today, your goal was 64 oz's.</p>
+    <p>You drank ${dayHydration} oz's today.</p>
+    <p>Your goal was 64 oz's.</p>
   </div>`);
 
 $('#user-steps').html(`<div class="single-chart">
@@ -369,10 +371,10 @@ $('#user-steps').html(`<div class="single-chart">
           a 15.9155 15.9155 0 0 1 0 31.831
           a 15.9155 15.9155 0 0 1 0 -31.831"
       />
-      <text x="18" y="20.35" class="percentage">${todaysSteps}</text>
+      <text  x="18" y="20.35" class="percentage">${todaysSteps}</text>
     </svg>
-    <p>You took ${todaysSteps} steps today, your goal was ${user.user.dailyStepGoal}</p>
-    <p>Average for all users today is ${averageStepsTodayAll}</p>
+    <p>Your goal was ${user.user.dailyStepGoal} steps.</p>
+    <p>Average for all users was ${averageStepsTodayAll} steps.</p>
   </div>`);
 
 $('#user-active').html(`<div class="single-chart">
