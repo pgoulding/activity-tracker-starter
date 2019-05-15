@@ -48,6 +48,11 @@ describe('Activity Test', function () {
     expect(activity.userStepsPerWeek('21/05/2019')).to.have.length(7)
   })
 
+  it('should return the how many steps a user took on a given week', function () {
+    expect(activity.userTotalStepsOnWeek('06/05/2019')).to.be.a('number')
+    expect(activity.userTotalStepsOnWeek('21/06/2019')).to.equal(67564)
+  })
+
   it('should return how many minutes active was a user active per day for a given week', function () {
     expect(activity.userMinutesPerWeek('21/05/2019')).to.be.a('array')
     expect(activity.userMinutesPerWeek('21/05/2019')).to.have.length(7)
@@ -77,6 +82,10 @@ describe('Activity Test', function () {
 
   it('should return the average number of steps taken for a specific date', function () {
     expect(activity.allUsersStepsTakenOnDate('06/05/2019')).to.be.equal(6872)
+  })
+
+  it('should compare the user and friends', function () {
+    console.log(activity.compareTheUserandFriends('21/05/2019'))
   })
 
   it('should return the average number of minutes active for a specific date', function () {
