@@ -34,6 +34,11 @@ describe('Activity Test', function () {
     expect(activity.userActiveMinutesPerDay('06/05/2019')).to.equal(204)
   })
 
+  it('should return how many flights of stairs the user has climbed for a given day(specified by a date)', function () {
+    expect(activity.userStairsClimbedToday('06/05/2019')).to.be.a('number')
+    expect(activity.userStairsClimbedToday('06/05/2019')).to.equal(46)
+  })
+
   it('should return how many minutes active did a user average for a given week', function () {
     expect(activity.userActiveMinutesPerWeek('06/05/2019')).to.equal(176.43)
   })

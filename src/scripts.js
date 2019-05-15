@@ -19,19 +19,25 @@ console.log('activity: ', activity)
 
 /*------------Methods Called-----------*/
 
-let usersStepAverage = userRepo.averageStepGoal();
-const todaysSteps = activity.userStepsTakenToday(todaysDate);
+/*-----------activity------------------*/
 const averageStepsTodayAll = activity.allUsersStepsTakenOnDate(todaysDate);
+const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate);
+const averageStairsTodayAll =activity.allUsersStairsClimbedToday(todaysDate)
+const usersStepAverage = userRepo.averageStepGoal();
 
-const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate)
+
+const todaysSteps = activity.userStepsTakenToday(todaysDate);
 const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
-
 const userMilesWalkedToday = activity.userMilesWalkedToday(todaysDate);
 const userStepRecordAllTime = activity.userAllTimeStepRecord();
+const userStairsClimbedToday = activity.userStairsClimbedToday(todaysDate);
 
+/*-----------Hydration------------------*/
 let dayHydration = hydration.amountHydratedByDay(todaysDate);
 let weekHydration = hydration.waterForWeek(todaysDate)
 
+
+/*-----------Sleep------------------*/
 let daySleep = sleep.hoursSleptOnDay(todaysDate);
 let qualitySleep = sleep.qualityOnDay(todaysDate);
 let weekSleep = sleep.hoursSleptGivenWeek(todaysDate)
@@ -64,6 +70,8 @@ const hydrationWeek = $('#hydration-week-chart');
 const activityWeek = $('#activity-week-chart');
 const stepGoals = $('#step-goal-chart');
 const sleepToday = $('#sleep-chart');
+const activityStepChart = $("#activity-step-chart");
+const activityStairChart = $('#activity-stairs-chart');
 
 let hoursSleptChart = new Chart(sleepHours, {
   type: 'bar',
@@ -176,43 +184,6 @@ let hydrationWeekChart = new Chart(hydrationWeek, {
   }
 });
 
-// let activityWeekChart = new Chart(activityWeek, {
-//   type: 'bar',
-//   data: {
-//     labels: [`${(weekHydration[0].date)}`, `${(weekHydration[1].date)}`, `${(weekHydration[2].date)}`, `${(weekHydration[3].date)}`, `${(weekHydration[4].date)}`, `${(weekHydration[5].date)}`, `${(weekHydration[6].date)}`],
-//     datasets: [{
-//       label: 'Ounces',
-//       data: [(weekHydration[0].numOunces), (weekHydration[1].numOunces), (weekHydration[2].numOunces), (weekHydration[3].numOunces), (weekHydration[4].numOunces), (weekHydration[5].numOunces), (weekHydration[6].numOunces)],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         'rgba(255, 206, 86, 0.2)',
-//         'rgba(75, 192, 192, 0.2)',
-//         'rgba(153, 102, 255, 0.2)',
-//         'rgba(255, 159, 64, 0.2)'
-//       ],
-//       borderColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-//         'rgba(255, 206, 86, 1)',
-//         'rgba(75, 192, 192, 1)',
-//         'rgba(153, 102, 255, 1)',
-//         'rgba(255, 159, 64, 1)'
-//       ],
-//       borderWidth: 1
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// });
-
 let stepGoalComparisonChart = new Chart(stepGoals, {
   type: 'pie',
   data: {
@@ -277,38 +248,147 @@ let sleepChart = new Chart(sleepToday, {
   }
 })
 
-// const activityChart = $("#activity-week-chart");
+const userStepCount = {
+  label: 'Your Step Count',
+  data: [todaysSteps],
+  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+  borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
+  borderWidth: 1,
+};
 
-// Chart.defaults.global.defaultFontFamily = "Lato";
-// Chart.defaults.global.defaultFontSize = 18;
+const averageStepCount = {
+  label: 'Average Step Count',
+  data: [averageStepsTodayAll],
+  backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
+  borderWidth: 1,
+};
 
-// const activityStepCount = {
-//   label: 'Sleep Quality',
-//   data: [5.5, 3.4],
-//   backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-//   borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
-//   borderWidth: 1,
-// };
-
-// const activityFlightsStairs = {
-//   label: 'Sleep Hours',
-//   data: [3.7, 5.7],
-//   backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
-//   borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
-//   borderWidth: 1,
-// };
-
-// const activityMinutes
-
-// const activityData = {
-//   labels: ["Average", "You"],
-//   datasets: [sleepQuality, sleepHours]
-// };
+const stepChart = new Chart(activityStepChart, {
+  type: 'bar',
+  data: {
+    labels: ['Steps'],
+    datasets:[averageStepCount, userStepCount]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
 
 
-// const activityChart = new Chart(activityWeek, {
-//   type: 'bar',
-//   data: activityData,
+const userStairCount = {
+  label: 'Your Stairs Count',
+  data: [userStairsClimbedToday],
+  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+  borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
+  borderWidth: 1,
+};
+
+const averageStairCount = {
+  label: 'Average Stair Count',
+  data: [averageStairsTodayAll],
+  backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
+  borderWidth: 1,
+};
+
+const stairChart = new Chart(activityStairChart, {
+  type: 'bar',
+  data: {
+    labels: ['Stairs'],
+    datasets: [
+      averageStairCount, 
+      userStairCount
+    ]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+
+
+const actiivtyMinutesChart = $('#activity-minutes-chart')
+
+// const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate);
+// const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
+
+const userMinutesActive = {
+  label: 'Your Minutes Active',
+  data: [todaysMinutesActive],
+  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+  borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
+  borderWidth: 1,
+};
+
+const averageMinutesActive = {
+  label: 'Average Minutes Active',
+  data: [averageMinsTodayAll],
+  backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
+  borderWidth: 1,
+};
+
+const minutesChart = new Chart(actiivtyMinutesChart, {
+  type: 'bar',
+  data: {
+    labels: ['Minutes'],
+    datasets: [
+      averageMinutesActive,
+      userMinutesActive
+    ]
+  },
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true
+        }
+      }]
+    }
+  }
+});
+
+// const weeklyMinutesChart = $('#activity-minutes-chart')
+
+// let hydrationWeekChart = new Chart(hydrationWeek, {
+//   type: 'line',
+//   data: {
+//     labels: [`${(weekHydration[0].date)}`, `${(weekHydration[1].date)}`, `${(weekHydration[2].date)}`, `${(weekHydration[3].date)}`, `${(weekHydration[4].date)}`, `${(weekHydration[5].date)}`, `${(weekHydration[6].date)}`],
+//     datasets: [{
+//       label: 'Ounces',
+//       data: [(weekHydration[0].numOunces), (weekHydration[1].numOunces), (weekHydration[2].numOunces), (weekHydration[3].numOunces), (weekHydration[4].numOunces), (weekHydration[5].numOunces), (weekHydration[6].numOunces)],
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         'rgba(255, 206, 86, 0.2)',
+//         'rgba(75, 192, 192, 0.2)',
+//         'rgba(153, 102, 255, 0.2)',
+//         'rgba(255, 159, 64, 0.2)'
+//       ],
+//       borderColor: [
+//         'rgba(255, 99, 132, 1)',
+//         'rgba(54, 162, 235, 1)',
+//         'rgba(255, 206, 86, 1)',
+//         'rgba(75, 192, 192, 1)',
+//         'rgba(153, 102, 255, 1)',
+//         'rgba(255, 159, 64, 1)'
+//       ],
+//       borderWidth: 3
+//     }]
+//   },
 //   options: {
 //     scales: {
 //       yAxes: [{
@@ -319,7 +399,6 @@ let sleepChart = new Chart(sleepToday, {
 //     }
 //   }
 // });
-
 
 /*------------Circle Graphs--------*/
 const waterPercentage = () => Math.round(dayHydration / 64 * 100)

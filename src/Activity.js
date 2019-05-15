@@ -32,6 +32,11 @@ class Activity {
     let todaysData = this.activeData.activityData.find(today => today.date === day)
     return todaysData.minutesActive
   }
+
+  userStairsClimbedToday(day) {
+    let todaysData = this.activeData.activityData.find(today => today.date === day)
+    return todaysData.flightsOfStairs
+  }
   
   //For a user, how many minutes active did they average for a given week(7 days) ?
   userActiveMinutesPerWeek(weekStart) {
@@ -45,6 +50,7 @@ class Activity {
       
     return parseFloat(weekTotal.toFixed(2))
   }
+
   //For a user, did they reach their step goal for a given day(specified by a date) ?
   userStepGoalReached(day) {
     let activityDataForDay = this.activeData.activityData.find(ele => ele.date === day)
