@@ -16,28 +16,29 @@ class Sleep {
 
   //For a user(identified by their userID), the average number of hours slept per day
   averageSleepPerDay() {
-    return this.data.sleepData.reduce((acc, sum) => {
+    let userSleep = this.data.sleepData.reduce((acc, sum) => {
       acc += sum.hoursSlept
       return Math.floor(acc)
     }, 0) / this.data.sleepData.length
 
+    return parseFloat(userSleep).toFixed(2)
   }
   //For a user, their average sleep quality per day over all time
   averageSleepQualAllTime() {
-    return this.data.sleepData.reduce((acc, sum) => {
+    let userAverage = this.data.sleepData.reduce((acc, sum) => {
       acc += sum.sleepQuality
       return Math.floor(acc)
     }, 0) / this.data.sleepData.length
-
+    return parseFloat(userAverage).toFixed(2)
   }
 
   //For a user, their average sleep hours per day over all time
   averageSleepHoursAllTime() {
-    return this.data.sleepData.reduce((acc, sum) => {
+    let averageAllTime =  this.data.sleepData.reduce((acc, sum) => {
       acc += sum.hoursSlept
       return Math.floor(acc)
     }, 0) / this.data.sleepData.length
-
+    return parseFloat(averageAllTime).toFixed(2)
   }
 
   //For a user, how many hours they slept for a specific day(identified by a date)

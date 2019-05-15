@@ -63,7 +63,7 @@ $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes 
 $('#user-miles').text(`${userMilesWalkedToday} Miles`)
 $('#all-user-active').text(`Average for all users was ${averageMinsTodayAll} minutes.`)
 
-/*-------------Frineds Dash---------*/
+/*-------------Friends Dash---------*/
 const competitionResults = activity.compareTheUserandFriends(todaysDate)
 $('#first-place').html(`<p>${competitionResults[0].name}, got ${competitionResults[0].totalSteps} steps for first place!</p>`)
 $('#second-place').html(`<p>${competitionResults[1].name}, got ${competitionResults[1].totalSteps} steps for second place!</p>`)
@@ -219,30 +219,36 @@ let stepGoalComparisonChart = new Chart(stepGoals, {
   }
 });
 
-let sleepChart = new Chart(sleepToday, {
+// const sleepCanvas = $("#sleep-chart");
+
+// Chart.defaults.global.defaultFontFamily = "Lato";
+// Chart.defaults.global.defaultFontSize = 18;
+
+const sleepQuality = {
+  label: 'Sleep Quality',
+  data: [(qualitySleep), (alltimeQualSleep) ],
+  backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+  borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
+  borderWidth: 1,
+};
+
+const sleepyHours = {
+  label: 'Sleep Hours',
+  data: [(daySleep), (alltimeHoursSleep)],
+  backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
+  borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
+  borderWidth: 1,
+};
+
+const sleepyData = {
+  labels: ["Average", "Your"],
+  datasets: [sleepQuality, sleepyHours]
+};
+
+
+const sleepChart = new Chart(sleepToday, {
   type: 'bar',
-  data: {
-    labels: [`Hours Slept Today`, `Sleep Quality Today`, ``, `Average Hours Slept`, `Average Sleep Quality`],
-    datasets: [{
-      label: 'Sleep',
-      data: [(daySleep), (qualitySleep), null, (alltimeHoursSleep), (alltimeQualSleep) ],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        null,
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        null,
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)'
-      ],
-      borderWidth: 3
-    }]
-  },
+  data: sleepyData,
   options: {
     scales: {
       yAxes: [{
@@ -252,7 +258,42 @@ let sleepChart = new Chart(sleepToday, {
       }]
     }
   }
-})
+});
+
+// let sleepChart = new Chart(sleepToday, {
+//   type: 'bar',
+//   data: {
+//     labels: [`Hours Slept Today`, `Sleep Quality Today`, ``, `Average Hours Slept`, `Average Sleep Quality`],
+//     datasets: [{
+//       label: 'Sleep',
+//       data: [(daySleep), (qualitySleep), null, (alltimeHoursSleep), (alltimeQualSleep) ],
+//       backgroundColor: [
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)',
+//         null,
+//         'rgba(255, 99, 132, 0.2)',
+//         'rgba(54, 162, 235, 0.2)'
+//       ],
+//       borderColor: [
+//         'rgba(255, 99, 132, 1)',
+//         'rgba(54, 162, 235, 1)',
+//         null,
+//         'rgba(255, 99, 132, 1)',
+//         'rgba(54, 162, 235, 1)'
+//       ],
+//       borderWidth: 3
+//     }]
+//   },
+//   options: {
+//     scales: {
+//       yAxes: [{
+//         ticks: {
+//           beginAtZero: true
+//         }
+//       }]
+//     }
+//   }
+// })
 
 const userStepCount = {
   label: 'Your Step Count',
