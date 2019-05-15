@@ -51,7 +51,6 @@ describe('User', function () {
 
   it('should return the first friends activity data', function () {
     expect(user.friendOneStepCountForWeek('06/05/2019')).to.be.a('array')
-    console.log(user.friendOneStepCountForWeek('06/05/2019'))
   })
 
   it('should return the second friends activity data', function () {
@@ -60,11 +59,11 @@ describe('User', function () {
 
   it('should return the first friends step average', function () {
     expect(user.friendOneStepAverageForWeek('06/05/2019')).to.be.a('number')
-    expect(user.friendOneStepAverageForWeek('06/05/2019')).to.equal(6742)
+    expect(user.friendOneStepAverageForWeek('23/05/2019')).to.equal(65986)
   })
 
   it('should return the second friends step average', function () {
     expect(user.friendTwoStepAverageForWeek('06/05/2019')).to.be.a('number')
-    expect(user.friendTwoStepAverageForWeek('06/05/2019')).to.equal(8147)
+    expect(user.friendTwoStepAverageForWeek('21/06/2019')).to.equal(49267)
   })
 })

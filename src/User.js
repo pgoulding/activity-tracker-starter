@@ -27,7 +27,7 @@ class User {
   friendOneStepCountForWeek(weekStart) {
     let friendOneData = activityData.find(friendData => friendData.userID === this.userFriends[0].id)
     let index = friendOneData.activityData.findIndex(ele => ele.date === weekStart)
-    let friendOneWeek = friendOneData.activityData.slice(index, index + 7)
+    let friendOneWeek = friendOneData.activityData.slice((index - 6), index + 1)
 
     return friendOneWeek
   } 
@@ -35,35 +35,35 @@ class User {
   friendOneStepAverageForWeek(weekStart) {
     let friendOneData = activityData.find(friendData => friendData.userID === this.userFriends[0].id)
     let index = friendOneData.activityData.findIndex(ele => ele.date === weekStart)
-    let friendOneWeek = friendOneData.activityData.slice(index, index + 7)
+    let friendOneWeek = friendOneData.activityData.slice((index - 6), index + 1)
     let friendOneSteps = friendOneWeek.map(steps => steps.numSteps)
     let friendOneAvg =  friendOneSteps.reduce((acc, sum) => {
       acc += sum
       return acc;
     }, 0);
 
-    return Math.round(friendOneAvg / friendOneSteps.length)
+    return friendOneAvg
   }
 
   friendTwoStepCountForWeek (weekStart) {
     let friendTwoData = activityData.find(friendData => friendData.userID === this.userFriends[1].id)
     let index = friendTwoData.activityData.findIndex(ele => ele.date === weekStart)
-    let friendTwoWeek = friendTwoData.activityData.slice(index, index + 7)
+    let friendTwoWeek = friendTwoData.activityData.slice((index - 6), index + 1)
     
     return friendTwoWeek
   }
 
   friendTwoStepAverageForWeek(weekStart) {
-    let friendTwoData = activityData.find(friendData => friendData.userID === this.userFriends[1].id)
-    let index = friendTwoData.activityData.findIndex(ele => ele.date === weekStart)
-    let friendTwoWeek = friendTwoData.activityData.slice(index, index + 7)
-    let friendTwoSteps = friendTwoWeek.map(steps => steps.numSteps)
+    let friendTwoData = activityData.find(friendData => friendData.userID === this.userFriends[1].id);
+    let index = friendTwoData.activityData.findIndex(ele => ele.date === weekStart);
+    let friendTwoWeek = friendTwoData.activityData.slice((index - 6), index + 1);
+    let friendTwoSteps = friendTwoWeek.map(steps => steps.numSteps);
     let friendTwoAvg =  friendTwoSteps.reduce((acc, sum) => {
       acc += sum
       return acc;
     }, 0);
   
-    return Math.round(friendTwoAvg / friendTwoSteps.length)
+    return friendTwoAvg
   }
 }
 
