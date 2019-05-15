@@ -2,6 +2,7 @@
 <html lang='en-us'>
   <head>
     <title>Activity Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../libraries/package/dist/Chart.css">
@@ -141,8 +142,22 @@
       </nav>
       <section class="widgetContainer">
         <article class="widget">
-          <h3>Steps Today</h3>
-          <p id='user-steps'></p>
+          <h3 id="friend-one"></h3>
+          <div style="position:absolute; height:230px; width:95%">
+          <canvas id="friend-one-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3 id="friend-two"></h3>
+          <div style="position:absolute; height:230px; width:95%">
+            <canvas id="friend-two-week-chart" width="400" height="400"></canvas>
+          </div>
+        </article>
+        <article class="widget">
+          <h3 id="friend-competition">High Score for the week!</h3>
+          <p id="first-place"></p>
+          <p id="second-place"></p>
+          <p id="third-place"></p>
         </article>
       </section>
   </main>
