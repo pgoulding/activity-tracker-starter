@@ -14,8 +14,6 @@ class Activity {
     return activityData.find(user => user.userID === ident)
   }
 
-  //For a specific day(specified by a date), return the miles a user has walked based on their number of steps(use their strideLength to help calculate this)
-
   userMilesWalkedToday(day) {
     let todaysData = this.activeData.activityData.find(today => today.date === day)
     let walkedToday = (todaysData.numSteps * user.user.strideLength) / 5280;
@@ -27,7 +25,6 @@ class Activity {
     return todaysData.numSteps
   }
 
-  //For a user, (identified by their userID) how many minutes were they active for a given day(specified by a date) ?
   userActiveMinutesPerDay(day) {
     let todaysData = this.activeData.activityData.find(today => today.date === day)
     return todaysData.minutesActive
@@ -38,7 +35,6 @@ class Activity {
     return todaysData.flightsOfStairs
   }
   
-  //For a user, how many minutes active did they average for a given week(7 days) ?
   userAverageMinutesPerWeek(weekStart) {
     let firstDayIndex = this.activeData.activityData.findIndex(ele => ele.date === weekStart)
     let week = this.activeData.activityData
@@ -78,7 +74,6 @@ class Activity {
     return week
   }
 
-  //For a user, did they reach their step goal for a given day(specified by a date) ?
   userStepGoalReached(day) {
     let activityDataForDay = this.activeData.activityData.find(ele => ele.date === day)
     let stepsForDay = activityDataForDay.numSteps
@@ -86,7 +81,6 @@ class Activity {
     return userStepGoal <= stepsForDay
   }
 
-  //For a user, find all the days where they exceeded their step goal
   userDaysExceededStepGoal() {
     let dailyStepGoal = user.user.dailyStepGoal
     let filteredDays = this.activeData.activityData
@@ -115,9 +109,6 @@ class Activity {
     return totals.sort((a,b) => b.totalSteps - a.totalSteps)
   }
 
-  //For *ALL* users, what is the average number of:
-
-  // stairs climbed for a specified date
   allUsersStairsClimbedToday(day) {
     let allStairs = activityData.reduce((acc, sum) => {
       sum.activityData.forEach(stair => {
@@ -134,7 +125,6 @@ class Activity {
     }, 0)
     return Math.round(totalOfStairs / stairsForDays.length)
   }
-  // steps taken for a specific date
 
   allUsersStepsTakenOnDate(day) {
     let allSteps = activityData.reduce((acc, sum) => {
@@ -153,7 +143,6 @@ class Activity {
     return Math.round(totalOfSteps / stepsForDays.length)
   }
 
-  //minutes active for a specific date
   allUsersMinutesActiveForDate(day) {
     let allMinutes = activityData.reduce((acc, sum) => {
       sum.activityData.forEach(minute => {
@@ -170,8 +159,6 @@ class Activity {
     }, 0)
     return Math.round(totalOfMinutes / minutesForDays.length)
   }
-
-  // user step streak, find what days user had steps steaks 3 days or greater
 
   userStepStreak () {
     let results = []
@@ -197,7 +184,6 @@ class Activity {
     return streaks;
   }
 
-  // For a user, find their all - time stair climbing record
   userAllTimeStairRecord() {
     var stepRecord = this.activeData.activityData
       .sort((a, b)=> b.flightsOfStairs - a.flightsOfStairs)
@@ -205,9 +191,6 @@ class Activity {
   
     return stepRecord;
   }
-
-  //Make a metric of your own! Document it, calculate it, and display it.
-  // Best step day all time
 
   userAllTimeStepRecord() {
     var stepRecord = [...this.activeData.activityData]
