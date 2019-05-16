@@ -190,7 +190,11 @@ class Activity {
         currentSeries = [];
       }
     })
-    return results;
+    let streaks = results.map(streak => {
+      return {start:streak.shift().date, end:streak.pop().date}
+    })
+
+    return streaks;
   }
 
   // For a user, find their all - time stair climbing record

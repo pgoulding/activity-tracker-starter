@@ -57,10 +57,6 @@ describe('Sleep Test', function () {
 
   })
 
-  it('should find all the three day sleep quality streaks for a user', function () {
-    expect(sleep.userSleepQualityStreak()).to.be.a('array')
-  })
-
   it('should find the users who slept the most hours for a given day (one or more if they tied)', function () {
     sleep.championOfSleepers('06/05/2019')
     expect(sleep.championOfSleepers('06/05/2019')).to.be.a('array')

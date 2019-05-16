@@ -85,7 +85,7 @@ describe('Activity Test', function () {
   })
 
   it('should compare the user and friends', function () {
-    console.log(activity.compareTheUserandFriends('21/05/2019'))
+    expect(activity.compareTheUserandFriends('21/05/2019')).to.be.a('array')
   })
 
   it('should return the average number of minutes active for a specific date', function () {

@@ -36,6 +36,31 @@ class Hydration {
     return sliceWeek
   }
 
+  userHydrationStreak () {
+    let results = []
+    let currentSeries = []
+    this.data.hydrationData.forEach((currentItem, index) => {
+      if (currentItem === this.data.hydrationData[this.data.hydrationData.length - 1]) {
+        return;
+      }
+      let firstNum = currentItem.numOunces;
+      let secondNum = this.data.hydrationData[index + 1].numOunces;
+      currentSeries.push(currentItem)
+      if (firstNum > secondNum) {
+        if (currentSeries.length >= 3) {
+          results.push(currentSeries);
+        }
+        currentSeries = [];
+      }
+    })
+    
+    let streaks = results.map(streak => {
+      return {start:streak.shift().date, end:streak.pop().date}
+    })
+
+    return streaks;
+  }
+
 }
 
 if (typeof module !== 'undefined') {
