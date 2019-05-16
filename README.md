@@ -1,6 +1,6 @@
 # Activity Tracker 
 
-Given a data set from an activity tracker for many users, we created a dashboard to display the data we manipulated.
+Given a data set from an activity tracker for many users, this is a dashboard to display that data we manipulated.
 
 ## Authors
 
