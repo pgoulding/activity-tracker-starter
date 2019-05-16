@@ -99,6 +99,7 @@ class Sleep {
       })
       return acc
     }, [])
+    
     let greaterThanThree = averageHours.filter(item => item.averageSleepQual >= 3)
 
     return greaterThanThree
@@ -108,25 +109,21 @@ class Sleep {
     let hoursDay = sleepData.map(users => {
       return {userID: users.userID, date: users.sleepData.find(dates => dates.date === day)}
     })
+
     let newHoursDay = hoursDay.map(singleDay => {
       return {userID: singleDay.userID, hours: singleDay.date.hoursSlept}
     })
+
     let user = newHoursDay.sort((a, b) => b.hours - a.hours)
-    let userArr = [];
-    let test = user.forEach(users => {
-      if (user[0].hours === users.hours) {
-        userArr.push(users)
-      } else {
-        return userArr
-      }
-    })
+    let userArr  = user.filter(users => user[0].hours === users.hours)
     return userArr
   }
 
   longestNightSleep() {
-    let longestNight = this.data.sleepData.sort((a, b) => {
-      return b.hoursSlept - a.hoursSlept
-    }).shift()
+    let newSleep = [...this.data.sleepData]
+    let longestNight = newSleep
+      .sort((a, b) => b.hoursSlept - a.hoursSlept)
+      .shift()
     return longestNight
   }
 }

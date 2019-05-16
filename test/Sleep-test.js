@@ -1,4 +1,4 @@
-const chai = require('chai');
+const chai = require('chai')
 const expect = chai.expect;
 
 const Sleep = require('../src/Sleep');
@@ -53,13 +53,8 @@ describe('Sleep Test', function () {
     expect(sleep.allUsersSleepQuality()).to.equal(2.57)
   })
 
-  it('should find all users who average a sleep quality greater than 3 for a week', function () {
-
-  })
-
   it('should find the users who slept the most hours for a given day (one or more if they tied)', function () {
-    sleep.championOfSleepers('06/05/2019')
-    expect(sleep.championOfSleepers('06/05/2019')).to.be.a('array')
+    expect(sleep.championOfSleepers('06/05/2019')).to.be.a('array').that.has.length(1)
   })
 
   it('should find all users who average a sleep quality greater than 3 for a given week(7 days) - you should be able to calculate this for any week', function () {
