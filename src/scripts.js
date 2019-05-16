@@ -37,9 +37,9 @@ let dayHydration = hydration.amountHydratedByDay(todaysDate);
 let weekHydration = hydration.waterForWeek(todaysDate)
 const hydrationStreak = hydration.userHydrationStreak()
 $('#user-hydration-streak').text(`You had ${hydrationStreak.length} streaks of three or more days with increasing ounces drank.`)
-$('#hydration-streak-list-one').text(`Start Date: ${hydrationStreak[0].start} - End Date: ${hydrationStreak[0].end}`)
-$('#hydration-streak-list-two').text(`Start Date: ${hydrationStreak[1].start} - End Date: ${hydrationStreak[1].end}`)
-$('#hydration-streak-list-three').text(`Start Date: ${hydrationStreak[2].start} - End Date: ${hydrationStreak[2].end}`)
+$('#hydration-streak-list-one').html(`<p> 1. Start Date: ${hydrationStreak[0].start}</p> <p>End Date: ${hydrationStreak[0].end}</p>`)
+$('#hydration-streak-list-two').html(`<p>2. Start Date: ${hydrationStreak[1].start}</p> <p>End Date: ${hydrationStreak[1].end}</p>`)
+$('#hydration-streak-list-three').html(`<p>3. Start Date: ${hydrationStreak[2].start}</p> <p>End Date: ${hydrationStreak[2].end}</p>`)
 
 /*-----------Sleep------------------*/
 let daySleep = sleep.hoursSleptOnDay(todaysDate);
