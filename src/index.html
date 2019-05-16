@@ -28,10 +28,15 @@
           <p id='user-step-goal'></p>
           <p id='user-stride-length'></p>
         </article>
-        <article class="widget-data">
-          <h3>Step Goal Challenge</h3>
-          <div style= "position:absolute; height:230px; width:95%">
-            <canvas id="step-goal-chart"></canvas>
+       <article class="widget">
+          <h3 id="friend-competition">Weekly Step Challenge</h3>
+          <p id="first-place"></p>
+          <p id="second-place"></p>
+          <p id="third-place"></p>
+          <div id="medals">
+            <img class='first'src='../images/gold-medal.svg'/>
+            <img class='first'src='../images/silver-medal.svg'/>
+            <img class='first'src='../images/bronze-medal.svg'/>
           </div>
         </article>
       </section>
@@ -49,12 +54,20 @@
           <canvas id="hydration-week-chart" width="400" height="400"></canvas>
           </div>
         </article>
+        <article class="widget">
+          <h3>Hydration Streaks</h3>
+          <p id='user-hydration-streak'></p>
+          <h4>Recent Three</h4>
+          <p id='hydration-streak-list-one'></p>
+          <p id='hydration-streak-list-two'></p>
+          <p id='hydration-streak-list-three'></p>
+        </article>
       </section>  
       <nav class='dashTitle'>
         <h2>Sleep Dash</h2>
       </nav>
       <section class="widgetContainer">
-        <article class="widget">
+        <article class="widget-data">
           <h3>Sleep Comparison</h3>
           <div style="position:absolute; height:230px; width:95%">
           <canvas id="sleep-chart" width="400" height="400"></canvas>
@@ -98,69 +111,71 @@
           <img class='shoe'src='../images/running2.svg'/>
           <p id='user-miles'>Miles</p>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Step Challenge</h3>
           <div style="position:absolute; height:230px; width:95%">
             <canvas id="activity-step-chart" width="400" height="400"></canvas>
           </div>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Stairs Challenge</h3>
           <div style="position:absolute; height:230px; width:95%">
           <canvas id="activity-stairs-chart" width="400" height="400"></canvas>
           </div>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Minutes Active Challenge</h3>
           <div style="position:absolute; height:230px; width:95%">
             <canvas id="activity-minutes-chart" width="400" height="400"></canvas>
           </div>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Weekly Minutes Active</h3>
           <div style= "position:absolute; height:230px; width:95%">
             <canvas id="activity-minutes-week-chart" width="400" height="400"></canvas>
           </div>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Weekly Steps</h3>
           <div style="position:absolute; height:230px; width:95%">
             <canvas id="activity-steps-week-chart" width="400" height="400"></canvas>
           </div>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3>Weekly Stairs Climbed</h3>
           <div style="position:absolute; height:230px; width:95%">
             <canvas id="activity-stairs-week-chart" width="400" height="400"></canvas>
           </div>
         </article>
         <article class="widget">
-            <h3>All Time Steps Record</h3>
-            <img class='foot'src='../images/foot.svg'/>
-            <p id='user-steps-record'>Steps</p>
-          </article>
+          <h3>All Time Steps Record</h3>
+          <img class='foot'src='../images/foot.svg'/>
+          <p id='user-steps-record'>Steps</p>
+        </article>
+        <article class="widget">
+          <h3>Steps Streaks</h3>
+          <p id='user-steps-streak'></p>
+          <h4>Recent Three</h4>
+          <p id='step-streak-list-one'></p>
+          <p id='step-streak-list-two'></p>
+          <p id='step-streak-list-three'></p>
+        </article>
       </section> 
       <nav class='dashTitle'>
         <h2>Friends</h2>
       </nav>
       <section class="widgetContainer">
-        <article class="widget">
+        <article class="widget-data">
           <h3 id="friend-one"></h3>
           <div style="position:absolute; height:230px; width:95%">
           <canvas id="friend-one-week-chart" width="400" height="400"></canvas>
           </div>
         </article>
-        <article class="widget">
+        <article class="widget-data">
           <h3 id="friend-two"></h3>
           <div style="position:absolute; height:230px; width:95%">
             <canvas id="friend-two-week-chart" width="400" height="400"></canvas>
           </div>
-        </article>
-        <article class="widget">
-          <h3 id="friend-competition">High Score for the week!</h3>
-          <p id="first-place"></p>
-          <p id="second-place"></p>
-          <p id="third-place"></p>
         </article>
       </section>
   </main>

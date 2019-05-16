@@ -34,9 +34,16 @@ const userStairsClimbedToday = activity.userStairsClimbedToday(todaysDate);
 const weeksSteps = activity.userStepsPerWeek(todaysDate)
 const weeksMinutesActive = activity.userMinutesPerWeek(todaysDate)
 const weeksStairs = activity.userStairsPerWeek(todaysDate)
+
+const stepStreak = activity.userStepStreak()
 /*-----------Hydration------------------*/
 let dayHydration = hydration.amountHydratedByDay(todaysDate);
 let weekHydration = hydration.waterForWeek(todaysDate)
+const hydrationStreak = hydration.userHydrationStreak()
+$('#user-hydration-streak').text(`You had ${hydrationStreak.length} streaks of three or more days with increasing ounces drank.`)
+$('#hydration-streak-list-one').text(`Start Date: ${hydrationStreak[0].start} - End Date: ${hydrationStreak[0].end}`)
+$('#hydration-streak-list-two').text(`Start Date: ${hydrationStreak[1].start} - End Date: ${hydrationStreak[1].end}`)
+$('#hydration-streak-list-three').text(`Start Date: ${hydrationStreak[2].start} - End Date: ${hydrationStreak[2].end}`)
 
 
 /*-----------Sleep------------------*/
@@ -62,12 +69,16 @@ $('#user-longest-sleep-date').text(`${longestNight.date}`);
 $('#user-active').text(`You have been active for ${todaysMinutesActive} minutes today`)
 $('#user-miles').text(`${userMilesWalkedToday} Miles`)
 $('#all-user-active').text(`Average for all users was ${averageMinsTodayAll} minutes.`)
+$('#user-steps-streak').text(`You had ${stepStreak.length} streaks of three or more days with increasing step counts.`)
+$('#step-streak-list-one').text(`Start Date: ${stepStreak[0].start} - End Date: ${stepStreak[0].end}`)
+$('#step-streak-list-two').text(`Start Date: ${stepStreak[1].start} - End Date: ${stepStreak[1].end}`)
+$('#step-streak-list-three').text(`Star Date: ${stepStreak[2].start} - End Date: ${stepStreak[2].end}`)
 
 /*-------------Friends Dash---------*/
 const competitionResults = activity.compareTheUserandFriends(todaysDate)
-$('#first-place').html(`<p>${competitionResults[0].name}, got ${competitionResults[0].totalSteps} steps for first place!</p>`)
-$('#second-place').html(`<p>${competitionResults[1].name}, got ${competitionResults[1].totalSteps} steps for second place!</p>`)
-$('#third-place').html(`<p>${competitionResults[2].name}, got ${competitionResults[2].totalSteps}  steps for third place!</p>`)
+$('#first-place').html(`<p>1st: ${competitionResults[0].name} ${competitionResults[0].totalSteps} steps!</p>`)
+$('#second-place').html(`<p>2nd: ${competitionResults[1].name} ${competitionResults[1].totalSteps} steps!</p>`)
+$('#third-place').html(`<p>3rd: ${competitionResults[2].name} ${competitionResults[2].totalSteps}  steps!</p>`)
 
 /*------------Charts----------------*/
 const sleepQual = $('#qual-slept-week-chart');
@@ -190,46 +201,12 @@ let hydrationWeekChart = new Chart(hydrationWeek, {
   }
 });
 
-let stepGoalComparisonChart = new Chart(stepGoals, {
-  type: 'pie',
-  data: {
-    labels: [`Your Step Goal`, `Average Step Goal`],
-    datasets: [{
-      label: 'Goal',
-      data: [(user.user.dailyStepGoal), (usersStepAverage)],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-      ],
-      borderWidth: 3
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  }
-});
-
-// const sleepCanvas = $("#sleep-chart");
-
-// Chart.defaults.global.defaultFontFamily = "Lato";
-// Chart.defaults.global.defaultFontSize = 18;
-
 const sleepQuality = {
   label: 'Sleep Quality',
   data: [(qualitySleep), (alltimeQualSleep) ],
   backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
   borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const sleepyHours = {
@@ -237,7 +214,7 @@ const sleepyHours = {
   data: [(daySleep), (alltimeHoursSleep)],
   backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
   borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const sleepyData = {
@@ -260,47 +237,12 @@ const sleepChart = new Chart(sleepToday, {
   }
 });
 
-// let sleepChart = new Chart(sleepToday, {
-//   type: 'bar',
-//   data: {
-//     labels: [`Hours Slept Today`, `Sleep Quality Today`, ``, `Average Hours Slept`, `Average Sleep Quality`],
-//     datasets: [{
-//       label: 'Sleep',
-//       data: [(daySleep), (qualitySleep), null, (alltimeHoursSleep), (alltimeQualSleep) ],
-//       backgroundColor: [
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)',
-//         null,
-//         'rgba(255, 99, 132, 0.2)',
-//         'rgba(54, 162, 235, 0.2)'
-//       ],
-//       borderColor: [
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)',
-//         null,
-//         'rgba(255, 99, 132, 1)',
-//         'rgba(54, 162, 235, 1)'
-//       ],
-//       borderWidth: 3
-//     }]
-//   },
-//   options: {
-//     scales: {
-//       yAxes: [{
-//         ticks: {
-//           beginAtZero: true
-//         }
-//       }]
-//     }
-//   }
-// })
-
 const userStepCount = {
   label: 'Your Step Count',
   data: [todaysSteps],
   backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
   borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const averageStepCount = {
@@ -308,7 +250,7 @@ const averageStepCount = {
   data: [averageStepsTodayAll],
   backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
   borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const stepChart = new Chart(activityStepChart, {
@@ -334,7 +276,7 @@ const userStairCount = {
   data: [userStairsClimbedToday],
   backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
   borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const averageStairCount = {
@@ -342,7 +284,7 @@ const averageStairCount = {
   data: [averageStairsTodayAll],
   backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
   borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const stairChart = new Chart(activityStairChart, {
@@ -365,19 +307,14 @@ const stairChart = new Chart(activityStairChart, {
   }
 });
 
-
-
 const activityMinutesChart = $('#activity-minutes-chart')
-
-// const averageMinsTodayAll = activity.allUsersMinutesActiveForDate(todaysDate);
-// const todaysMinutesActive = activity.userActiveMinutesPerDay(todaysDate);
 
 const userMinutesActive = {
   label: 'Your Minutes Active',
   data: [todaysMinutesActive],
   backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
   borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const averageMinutesActive = {
@@ -385,7 +322,7 @@ const averageMinutesActive = {
   data: [averageMinsTodayAll],
   backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
   borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
-  borderWidth: 1,
+  borderWidth: 3,
 };
 
 const minutesChart = new Chart(activityMinutesChart, {
@@ -530,7 +467,7 @@ let userStairsWeekChart = new Chart(weeklyStairsChart, {
 const friendOneChart = $('#friend-one-week-chart')
 
 const friendOneStepCount = user.friendOneStepCountForWeek(todaysDate)
-$('#friend-one').html(`<h3>${user.userFriends[0].name}<img id="friend-one-img" src="../images/${user.userFriends[0].id}.jpg"></h3>`)
+$('#friend-one').text(`${user.userFriends[0].name}`)
 
 let friendOneStepsWeekChart = new Chart(friendOneChart, {
   type: 'bar',
@@ -572,7 +509,7 @@ let friendOneStepsWeekChart = new Chart(friendOneChart, {
 const friendTwoChart = $('#friend-two-week-chart')
 
 const friendTwoStepCount = user.friendTwoStepCountForWeek(todaysDate)
-$('#friend-two').html(`<h3>${user.userFriends[1].name}<img id="friend-two-img" src="../images/${user.userFriends[1].id}.jpg"></h3>`)
+$('#friend-two').text(`${user.userFriends[1].name}`)
 
 let friendTwoStepsWeekChart = new Chart(friendTwoChart, {
   type: 'bar',
@@ -627,11 +564,8 @@ const userStepRecordAllTime = activity.userAllTimeStepRecord();
 $('#user-steps-record').text(`${userStepRecordAllTime} Steps`)
 /*------------Circle Graphs--------*/
 const waterPercentage = () => Math.round(dayHydration / 64 * 100)
-
 const walkingPercentage = () => parseFloat((todaysSteps / user.user.dailyStepGoal * 100).toFixed(2))
-
 const minutesPerDay = () => (todaysMinutesActive / 150) * 100
-
 
 const determineColor = percentage => {
   if (percentage < 50) {

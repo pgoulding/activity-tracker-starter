@@ -47,5 +47,8 @@ describe('Hydration Test', function () {
     expect(hydration.waterForWeek('22/05/2019')).to.have.length(7);
   })
 
+  it('should find all the three day hydration quality streaks for a user', function () {
+  expect(hydration.userHydrationStreak()).to.be.a('array')
+  })
 
 })
