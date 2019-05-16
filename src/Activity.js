@@ -210,11 +210,10 @@ class Activity {
   // Best step day all time
 
   userAllTimeStepRecord() {
-    var stepRecord = this.activeData.activityData
-      .sort((a, b)=> b.numSteps - a.numSteps)
-      .map(step => step.numSteps).shift()
+    var stepRecord = [...this.activeData.activityData]
+    let newArr = stepRecord.sort((a, b)=> b.numSteps - a.numSteps).map(step => step.numSteps).shift()
 
-    return stepRecord
+    return newArr
   }
 }
 
