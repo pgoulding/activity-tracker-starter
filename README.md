@@ -35,6 +35,8 @@ NPM install
 - Chai
 - HTML
 - CSS
+- Chart.js
+- Moment.js
 
 
 ## Screenshots
