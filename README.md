@@ -5,6 +5,7 @@ Given a data set from an activity tracker for many users, we created a dashboard
 ## Authors
 
 Patrick Goulding
+
 Colby Allen
 
 ## Abstract
