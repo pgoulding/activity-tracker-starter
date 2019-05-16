@@ -39,11 +39,3 @@ NPM install
 
 ![screencapture-file-Users-colbyallen-Turing-mod-2-mod-2-projects-activity-tracker-activity-tracker-starter-src-index-html-2019-05-15-23_48_08](https://user-images.githubusercontent.com/43159025/57829489-5c496d00-776c-11e9-8986-2507227b12d0.png)
 
-
-## Viewing Your Code in Action
-
-In the terminal, run:
-
-```bash
-npm start
-```
