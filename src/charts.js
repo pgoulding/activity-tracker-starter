@@ -1,20 +1,37 @@
 const sleepQual = $('#qual-slept-week-chart');
 const sleepHours = $('#hours-slept-week-chart');
 const hydrationWeek = $('#hydration-week-chart');
-const activityWeek = $('#activity-week-chart');
-const stepGoals = $('#step-goal-chart');
 const sleepToday = $('#sleep-chart');
 const activityStepChart = $("#activity-step-chart");
 const activityStairChart = $('#activity-stairs-chart');
-
+const activityMinutesChart = $('#activity-minutes-chart');
+const weeklyMinutesChart = $('#activity-minutes-week-chart');
+const weeklyStepsChart = $('#activity-steps-week-chart');
+const weeklyStairsChart = $('#activity-stairs-week-chart')
 
 let hoursSleptChart = new Chart(sleepHours, {
   type: 'bar',
   data: {
-    labels: [`${(weekSleep[0].date)}`, `${(weekSleep[1].date)}`, `${(weekSleep[2].date)}`, `${(weekSleep[3].date)}`, `${(weekSleep[4].date)}`, `${(weekSleep[5].date)}`, `${(weekSleep[6].date)}`],
+    labels: [
+      `${(weekSleep[0].date)}`, 
+      `${(weekSleep[1].date)}`, 
+      `${(weekSleep[2].date)}`, 
+      `${(weekSleep[3].date)}`, 
+      `${(weekSleep[4].date)}`, 
+      `${(weekSleep[5].date)}`, 
+      `${(weekSleep[6].date)}`
+    ],
     datasets: [{
       label: 'Hours Slept',
-      data: [(weekSleep[0].hoursSlept), (weekSleep[1].hoursSlept), (weekSleep[2].hoursSlept), (weekSleep[3].hoursSlept), (weekSleep[4].hoursSlept), (weekSleep[5].hoursSlept), (weekSleep[6].hoursSlept)],
+      data: [
+        (weekSleep[0].hoursSlept),
+        (weekSleep[1].hoursSlept), 
+        (weekSleep[2].hoursSlept), 
+        (weekSleep[3].hoursSlept), 
+        (weekSleep[4].hoursSlept), 
+        (weekSleep[5].hoursSlept), 
+        (weekSleep[6].hoursSlept)
+      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -48,10 +65,25 @@ let hoursSleptChart = new Chart(sleepHours, {
 let sleepQualityChart = new Chart(sleepQual, {
   type: 'line',
   data: {
-    labels: [`${(weekQualSleep[0].date)}`, `${(weekQualSleep[1].date)}`, `${(weekQualSleep[2].date)}`, `${(weekQualSleep[3].date)}`, `${(weekQualSleep[4].date)}`, `${(weekQualSleep[5].date)}`, `${(weekQualSleep[6].date)}`],
+    labels: [
+      `${(weekQualSleep[0].date)}`, 
+      `${(weekQualSleep[1].date)}`, 
+      `${(weekQualSleep[2].date)}`, 
+      `${(weekQualSleep[3].date)}`, 
+      `${(weekQualSleep[4].date)}`, 
+      `${(weekQualSleep[5].date)}`, 
+      `${(weekQualSleep[6].date)}`
+    ],
     datasets: [{
       label: 'Sleep Quality',
-      data: [(weekQualSleep[0].quality), (weekQualSleep[1].quality), (weekQualSleep[2].quality), (weekQualSleep[3].quality), (weekQualSleep[4].quality), (weekQualSleep[5].quality), (weekQualSleep[6].quality)],
+      data: [
+        (weekQualSleep[0].quality), 
+        (weekQualSleep[1].quality), 
+        (weekQualSleep[2].quality), 
+        (weekQualSleep[3].quality), 
+        (weekQualSleep[4].quality),
+        (weekQualSleep[5].quality), 
+        (weekQualSleep[6].quality)],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -85,10 +117,26 @@ let sleepQualityChart = new Chart(sleepQual, {
 let hydrationWeekChart = new Chart(hydrationWeek, {
   type: 'line',
   data: {
-    labels: [`${(weekHydration[0].date)}`, `${(weekHydration[1].date)}`, `${(weekHydration[2].date)}`, `${(weekHydration[3].date)}`, `${(weekHydration[4].date)}`, `${(weekHydration[5].date)}`, `${(weekHydration[6].date)}`],
+    labels: [
+      `${(weekHydration[0].date)}`, 
+      `${(weekHydration[1].date)}`, 
+      `${(weekHydration[2].date)}`, 
+      `${(weekHydration[3].date)}`, 
+      `${(weekHydration[4].date)}`, 
+      `${(weekHydration[5].date)}`, 
+      `${(weekHydration[6].date)}`
+    ],
     datasets: [{
       label: 'Ounces',
-      data: [(weekHydration[0].numOunces), (weekHydration[1].numOunces), (weekHydration[2].numOunces), (weekHydration[3].numOunces), (weekHydration[4].numOunces), (weekHydration[5].numOunces), (weekHydration[6].numOunces)],
+      data: [
+        (weekHydration[0].numOunces), 
+        (weekHydration[1].numOunces), 
+        (weekHydration[2].numOunces), 
+        (weekHydration[3].numOunces), 
+        (weekHydration[4].numOunces), 
+        (weekHydration[5].numOunces), 
+        (weekHydration[6].numOunces)
+      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -121,7 +169,10 @@ let hydrationWeekChart = new Chart(hydrationWeek, {
 
 const sleepQuality = {
   label: 'Sleep Quality',
-  data: [(qualitySleep), (alltimeQualSleep)],
+  data: [
+    (qualitySleep), 
+    (alltimeQualSleep)
+  ],
   backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 99, 132, 0.2)'],
   borderColor: ['rgba(255, 99, 132, 1)', 'rgba(255, 99, 132, 1)'],
   borderWidth: 3,
@@ -129,7 +180,10 @@ const sleepQuality = {
 
 const sleepyHours = {
   label: 'Sleep Hours',
-  data: [(daySleep), (alltimeHoursSleep)],
+  data: [
+    (daySleep), 
+    (alltimeHoursSleep)
+  ],
   backgroundColor: ['rgba(54, 162, 235, 0.2)', 'rgba(54, 162, 235, 0.2)'],
   borderColor: ['rgba(54, 162, 235, 1)', 'rgba(54, 162, 235, 1)'],
   borderWidth: 3,
@@ -188,7 +242,6 @@ const stepChart = new Chart(activityStepChart, {
   }
 });
 
-
 const userStairCount = {
   label: 'Your Stairs Count',
   data: [userStairsClimbedToday],
@@ -224,8 +277,6 @@ const stairChart = new Chart(activityStairChart, {
     }
   }
 });
-
-const activityMinutesChart = $('#activity-minutes-chart')
 
 const userMinutesActive = {
   label: 'Your Minutes Active',
@@ -263,16 +314,29 @@ const minutesChart = new Chart(activityMinutesChart, {
   }
 });
 
-
-const weeklyMinutesChart = $('#activity-minutes-week-chart')
-
-let userMinutesWeekChart = new Chart(weeklyMinutesChart, {
+const userMinutesWeekChart = new Chart(weeklyMinutesChart, {
   type: 'line',
   data: {
-    labels: [`${(weeksMinutesActive[0].date)}`, `${(weeksMinutesActive[1].date)}`, `${(weeksMinutesActive[2].date)}`, `${(weeksMinutesActive[3].date)}`, `${(weeksMinutesActive[4].date)}`, `${(weeksMinutesActive[5].date)}`, `${(weeksMinutesActive[6].date)}`],
+    labels: [
+      `${(weeksMinutesActive[0].date)}`, 
+      `${(weeksMinutesActive[1].date)}`, 
+      `${(weeksMinutesActive[2].date)}`, 
+      `${(weeksMinutesActive[3].date)}`, 
+      `${(weeksMinutesActive[4].date)}`, 
+      `${(weeksMinutesActive[5].date)}`, 
+      `${(weeksMinutesActive[6].date)}`
+    ],
     datasets: [{
       label: 'Minutes',
-      data: [(weeksMinutesActive[0].minutes), (weeksMinutesActive[1].minutes), (weeksMinutesActive[2].minutes), (weeksMinutesActive[3].minutes), (weeksMinutesActive[4].minutes), (weeksMinutesActive[5].minutes), (weeksMinutesActive[6].minutes)],
+      data: [
+        (weeksMinutesActive[0].minutes), 
+        (weeksMinutesActive[1].minutes), 
+        (weeksMinutesActive[2].minutes), 
+        (weeksMinutesActive[3].minutes), 
+        (weeksMinutesActive[4].minutes), 
+        (weeksMinutesActive[5].minutes), 
+        (weeksMinutesActive[6].minutes)
+      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -303,15 +367,29 @@ let userMinutesWeekChart = new Chart(weeklyMinutesChart, {
   }
 });
 
-const weeklyStepsChart = $('#activity-steps-week-chart')
-
-let userStepsWeekChart = new Chart(weeklyStepsChart, {
+const userStepsWeekChart = new Chart(weeklyStepsChart, {
   type: 'bar',
   data: {
-    labels: [`${(weeksSteps[0].date)}`, `${(weeksSteps[1].date)}`, `${(weeksSteps[2].date)}`, `${(weeksSteps[3].date)}`, `${(weeksSteps[4].date)}`, `${(weeksSteps[5].date)}`, `${(weeksSteps[6].date)}`],
+    labels: [
+      `${(weeksSteps[0].date)}`, 
+      `${(weeksSteps[1].date)}`, 
+      `${(weeksSteps[2].date)}`, 
+      `${(weeksSteps[3].date)}`, 
+      `${(weeksSteps[4].date)}`, 
+      `${(weeksSteps[5].date)}`, 
+      `${(weeksSteps[6].date)}`
+    ],
     datasets: [{
       label: 'Steps',
-      data: [(weeksSteps[0].steps), (weeksSteps[1].steps), (weeksSteps[2].steps), (weeksSteps[3].steps), (weeksSteps[4].steps), (weeksSteps[5].steps), (weeksSteps[6].steps)],
+      data: [
+        (weeksSteps[0].steps), 
+        (weeksSteps[1].steps), 
+        (weeksSteps[2].steps), 
+        (weeksSteps[3].steps), 
+        (weeksSteps[4].steps), 
+        (weeksSteps[5].steps), 
+        (weeksSteps[6].steps)
+      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -342,15 +420,28 @@ let userStepsWeekChart = new Chart(weeklyStepsChart, {
   }
 });
 
-const weeklyStairsChart = $('#activity-stairs-week-chart')
-
-let userStairsWeekChart = new Chart(weeklyStairsChart, {
+const userStairsWeekChart = new Chart(weeklyStairsChart, {
   type: 'bar',
   data: {
-    labels: [`${(weeksStairs[0].date)}`, `${(weeksStairs[1].date)}`, `${(weeksStairs[2].date)}`, `${(weeksStairs[3].date)}`, `${(weeksStairs[4].date)}`, `${(weeksStairs[5].date)}`, `${(weeksStairs[6].date)}`],
+    labels: [
+      `${(weeksStairs[0].date)}`, 
+      `${(weeksStairs[1].date)}`, 
+      `${(weeksStairs[2].date)}`, 
+      `${(weeksStairs[3].date)}`, 
+      `${(weeksStairs[4].date)}`, 
+      `${(weeksStairs[5].date)}`, 
+      `${(weeksStairs[6].date)}`
+    ],
     datasets: [{
       label: 'Flights',
-      data: [(weeksStairs[0].stairs), (weeksStairs[1].stairs), (weeksStairs[2].stairs), (weeksStairs[3].stairs), (weeksStairs[4].stairs), (weeksStairs[5].stairs), (weeksStairs[6].stairs)],
+      data: [
+        (weeksStairs[0].stairs), 
+        (weeksStairs[1].stairs), 
+        (weeksStairs[2].stairs), 
+        (weeksStairs[3].stairs), 
+        (weeksStairs[4].stairs), 
+        (weeksStairs[5].stairs), 
+        (weeksStairs[6].stairs)],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -433,21 +524,23 @@ let friendTwoStepsWeekChart = new Chart(friendTwoChart, {
   type: 'bar',
   data: {
     labels: [`${(friendTwoStepCount[0].date)}`,
-    `${(friendTwoStepCount[1].date)}`,
-    `${(friendTwoStepCount[2].date)}`,
-    `${(friendTwoStepCount[3].date)}`,
-    `${(friendTwoStepCount[4].date)}`,
-    `${(friendTwoStepCount[5].date)}`,
-    `${(friendTwoStepCount[6].date)}`],
+      `${(friendTwoStepCount[1].date)}`,
+      `${(friendTwoStepCount[2].date)}`,
+      `${(friendTwoStepCount[3].date)}`,
+      `${(friendTwoStepCount[4].date)}`,
+      `${(friendTwoStepCount[5].date)}`,
+      `${(friendTwoStepCount[6].date)}`
+    ],
     datasets: [{
       label: 'Steps',
       data: [(friendTwoStepCount[0].numSteps),
-      (friendTwoStepCount[1].numSteps),
-      (friendTwoStepCount[2].numSteps),
-      (friendTwoStepCount[3].numSteps),
-      (friendTwoStepCount[4].numSteps),
-      (friendTwoStepCount[5].numSteps),
-      (friendTwoStepCount[6].numSteps)],
+        (friendTwoStepCount[1].numSteps),
+        (friendTwoStepCount[2].numSteps),
+        (friendTwoStepCount[3].numSteps),
+        (friendTwoStepCount[4].numSteps),
+        (friendTwoStepCount[5].numSteps),
+        (friendTwoStepCount[6].numSteps)
+      ],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
