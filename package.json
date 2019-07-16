@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d build",
     "test": "mocha",
     "lint": "./node_modules/eslint/bin/eslint.js src/**.js"
   },
@@ -12,6 +13,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
+    "gh-pages": "^2.0.1",
     "mocha": "^6.1.4"
   },
   "dependencies": {

@@ -4,18 +4,18 @@
     <title>Activity Tracker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css?family=Bevan" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="../css/base.css">
-    <link rel="stylesheet" type="text/css" href="../libraries/package/dist/Chart.css">
+    <link rel="stylesheet" type="text/css" href="./css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./libraries/package/dist/Chart.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
       integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
   </head>
   <body>
     <header> 
-      <h1><img class='weights' src='../images/weights.png'/>FitLit</h1>
+      <h1><img class='weights' src='./images/weights.png'/>FitLit</h1>
       <div id='headerInfo'>
         <span id="user-profile-pic"></span>
-        <figure><img class='calendar'src='../images/calendar.svg'/><span id="datetime"></span></figure>
+        <figure><img class='calendar'src='./images/calendar.svg'/><span id="datetime"></span></figure>
       </div>
     </header>
     <main>
@@ -34,9 +34,9 @@
           <p id="second-place"></p>
           <p id="third-place"></p>
           <div id="medals">
-            <img class='first'src='../images/gold-medal.svg'/>
-            <img class='first'src='../images/silver-medal.svg'/>
-            <img class='first'src='../images/bronze-medal.svg'/>
+            <img class='first'src='./images/gold-medal.svg'/>
+            <img class='first'src='./images/silver-medal.svg'/>
+            <img class='first'src='./images/bronze-medal.svg'/>
           </div>
         </article>
       </section>
@@ -87,7 +87,7 @@
         </article>
         <article class="widget">
           <h3>Longest Night of Sleep</h3>
-          <img class='moon'src='../images/moon2.svg'/>
+          <img class='moon'src='./images/moon2.svg'/>
           <p id='user-longest-sleep-hours'></p>
           <p id='user-longest-sleep-date'></p>
         </article>
@@ -108,7 +108,7 @@
         </article>
         <article class="widget">
           <h3>Miles Walked Today</h3>
-          <img class='shoe'src='../images/running2.svg'/>
+          <img class='shoe'src='./images/running2.svg'/>
           <p id='user-miles'>Miles</p>
         </article>
         <article class="widget-data">
@@ -149,7 +149,7 @@
         </article>
         <article class="widget">
           <h3>All Time Steps Record</h3>
-          <img class='foot'src='../images/foot.svg'/>
+          <img class='foot'src='./images/foot.svg'/>
           <p id='user-steps-record'>Steps</p>
         </article>
         <article class="widget">
@@ -179,20 +179,20 @@
         </article>
       </section>
   </main>
-  <script type="text/javascript" src="../data/activity.js"></script>
-  <script type="text/javascript" src="../data/hydration.js"></script>
-  <script type="text/javascript" src="../data/sleep.js"></script>
-  <script type="text/javascript" src="../data/users.js"></script>
-  <script type="text/javascript" src="./UserRepo.js"></script>
-  <script type="text/javascript" src="./User.js"></script>
-  <script type="text/javascript" src="./Activity.js"></script>
-  <script type="text/javascript" src="./Hydration.js"></script>
-  <script type="text/javascript" src="./Sleep.js"></script>
+  <script type="text/javascript" src="./data/activity.js"></script>
+  <script type="text/javascript" src="./data/hydration.js"></script>
+  <script type="text/javascript" src="./data/sleep.js"></script>
+  <script type="text/javascript" src="./data/users.js"></script>
+  <script type="text/javascript" src="./src/UserRepo.js"></script>
+  <script type="text/javascript" src="./src/User.js"></script>
+  <script type="text/javascript" src="./src/Activity.js"></script>
+  <script type="text/javascript" src="./src/Hydration.js"></script>
+  <script type="text/javascript" src="./src/Sleep.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-  <script type="text/javascript" src="../libraries/moment.js"></script>
-  <script type="text/javascript" src="../libraries/package/dist/Chart.bundle.js"></script>
-  <script type="text/javascript" src="../libraries/package/dist/Chart.js"></script>
-  <script type="text/javascript" src="./scripts.js"></script>
-  <<script type="text/javascript" src="./charts.js"></script>
+  <script type="text/javascript" src="./libraries/moment.js"></script>
+  <script type="text/javascript" src="./libraries/package/dist/Chart.bundle.js"></script>
+  <script type="text/javascript" src="./libraries/package/dist/Chart.js"></script>
+  <script type="text/javascript" src="./src/scripts.js"></script>
+  <script type="text/javascript" src="./src/charts.js"></script>
   </body>
 </html> 
